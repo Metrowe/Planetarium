@@ -149,7 +149,11 @@ void rotation()
 {
     if(toggle)
     {
-      theta += radians(0.8);
+      theta += radians(3);
+      if(theta > TWO_PI)
+      {
+        theta = theta % TWO_PI;
+      }//end if
       //desired = theta;
     }//end if
     else
@@ -192,22 +196,6 @@ void rotation()
       {
         //control = true;
       }//end else
-      
-      /*
-      if(planets[desired].locate > theta + radians(1))
-      {
-        theta = lerp(theta,planets[desired].locate,  3);
-        //theta += radians(1);//(gap/100);
-      }//end if
-      else if(planets[desired].locate < theta - radians(1))
-      {
-        theta -= radians(1);//(gap/100);
-      }//end else if
-      else
-      {
-        //control = true;
-      }//end else
-      */
     }//end else
 }//end
 
