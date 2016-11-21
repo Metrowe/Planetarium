@@ -6,17 +6,12 @@ void setup()
 {
   size(500,500);
   
-  planets[0] = new Planet("Mars",0.2,color(255,0,0));
-  planets[1] = new Planet("Pluto",0.1,color(0,0,255));
-  planets[2] = new Planet("Venus",0.3,color(200,0,200));
-  planets[3] = new Planet();
-  /*
-  planets[4] = new Planet();
-  planets[5] = new Planet();
-  planets[6] = new Planet();
-  planets[7] = new Planet();
-  planets[8] = new Planet();
-  */
+  p = 0;
+  newPlanet("Mars",0.2,color(255,0,0));
+  newPlanet("Pluto",0.1,color(0,0,255));
+  newPlanet("Venus",0.3,color(200,0,200));
+  newPlanet("Neptune",0.15,color(0,255,0));
+
   
   
   gap = TWO_PI / planets.length;
@@ -42,7 +37,7 @@ int numstars = 600;
 int numplanets = 4;
 Planet[] planets = new Planet[numplanets];
 Star[] stars = new Star[numstars];
-
+int p;
 float theta;
 float gap;
 float X,Y;
@@ -91,14 +86,11 @@ void keyPressed()
   */
 }//end keyPressed
 
-void addPlanet(int p)
+void newPlanet(String name,float size,color c)
 {
-  if(p == 1)
-  {
-    planets[2] = new Planet("Venus",0.3,color(200,0,200));
-  }//end if
-  planets[2] = new Planet("Venus",0.3,color(200,0,200));
-  planets[3] = new Planet();
+  planets[p] = new Planet(name,size,c);
+  
+  p++;
 }//end addPlanet
 
 
