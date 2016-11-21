@@ -20,6 +20,7 @@ void setup()
   desired = 0;
   mode = 1;
   toggle = false;
+  travel = 0;
   
   for(int i = 0;i < numplanets;i++)
   {
@@ -45,6 +46,8 @@ int mode;
 float scale;
 int desired;
 boolean toggle;
+int travel;
+float transition;
 
 void keyPressed()
 {
@@ -151,9 +154,50 @@ void rotation()
     }//end if
     else
     {
+      if(planets[desired].locate != theta)
+      {
+        if(travel == 0)
+        {
+          float mx;
+          float mn;
+          travel = 100;
+          
+          
+          if(theta > planets[desired].locate)
+          {
+            mx = theta;
+            mn = planets[desired].locate;
+          }//end if
+          else
+          {
+            mx = theta;
+            mn = planets[desired].locate;
+          }//end else
+          
+          
+          transition = (mx - mn) / travel;
+        }//end if
+        else if(travel == 1)
+        {
+          theta = planets[desired].locate;
+          travel = 0;
+        }//end else if
+        else
+        {
+          theta = theta - transition;
+          travel--;
+        }//end else
+      }//end if
+      else
+      {
+        //control = true;
+      }//end else
+      
+      /*
       if(planets[desired].locate > theta + radians(1))
       {
-        theta += radians(1);//(gap/100);
+        theta = lerp(theta,planets[desired].locate,  3);
+        //theta += radians(1);//(gap/100);
       }//end if
       else if(planets[desired].locate < theta - radians(1))
       {
@@ -163,6 +207,7 @@ void rotation()
       {
         //control = true;
       }//end else
+      */
     }//end else
 }//end
 
