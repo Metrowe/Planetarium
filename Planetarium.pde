@@ -1,3 +1,7 @@
+/*
+This is the real file
+*/
+
 void setup()
 {
   size(500,500);
