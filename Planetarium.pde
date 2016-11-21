@@ -178,8 +178,8 @@ void rotation()
             mn = planets[desired].locate;
           }//end else
           
-          
-          transition = (mx - mn) / travel;
+          transition = (diff(theta,planets[desired].locate) / travel);
+          //transition = (mx - mn) / travel;
         }//end if
         else if(travel == 1)
         {
@@ -198,6 +198,18 @@ void rotation()
       }//end else
     }//end else
 }//end
+
+float diff(float a,float b)
+{
+  if(a > b)
+  {
+    return a-b;
+  }//end if
+  else
+  {
+    return b-a;
+  }//end else
+}//end diff
 
 void draw()
 {
