@@ -84,6 +84,17 @@ void keyPressed()
   */
 }//end keyPressed
 
+void addPlanet(int p)
+{
+  if(p == 1)
+  {
+    planets[2] = new Planet("Venus",0.3,color(200,0,200));
+  }//end if
+  planets[2] = new Planet("Venus",0.3,color(200,0,200));
+  planets[3] = new Planet();
+}//end addPlanet
+
+
 void light()
 {
   noFill();
