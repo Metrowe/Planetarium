@@ -5,15 +5,15 @@ void switchView()
     case 0:
     {
       X = width/2;
-      Y = -(height/2);
-      scale = height*2;
+      Y = height/2;
+      scale = 1;
       break;
     }//end case 0
     case 1:
     {
       X = width/2;
-      Y = height/2;
-      scale = height*0.8;
+      Y = -(height*0.3);
+      scale = 1.5;
       break;
     }//end case 1
   }//end switch

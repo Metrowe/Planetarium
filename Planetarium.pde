@@ -13,7 +13,7 @@ void setup()
   newPlanet("Venus",50,color(200,0,200));
   newPlanet("Neptune",30,color(0,255,0));
 
-  view = 1;
+  view = 0;
   switchView();
   motion = 0;
   
@@ -58,30 +58,6 @@ int travel;
 float transition;
 boolean ready;
 
-void keyPressed()
-{
-  if(keyCode == UP)
-  {
-    view = (view + 1) % 2;
-    switchView();
-  }//end if
-  
-  if(keyCode == DOWN)
-  {
-    //toggle = !toggle;
-  }//end if
-  
-  if(keyCode == LEFT && motion == 0 && ready)
-  {
-    startRotate('l');
-  }//end if
-  
-  if(keyCode == RIGHT && motion == 0 && ready)
-  {
-    startRotate('r');
-  }//end if
-}//end keyPressed
-
 void newPlanet(String name,float size,color c)
 {
   planets[p] = new Planet(name,size,c);
@@ -124,6 +100,8 @@ void draw()
 {
   
   background(0);
+  
+  scale(scale);
   
   light();
   
