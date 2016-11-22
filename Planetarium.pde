@@ -138,7 +138,6 @@ void rotation()
       {
         theta = theta % TWO_PI;
       }//end if
-      //desired = theta;
     }//end if
     else
     {
@@ -146,24 +145,8 @@ void rotation()
       {
         if(travel == 0)
         {
-          float mx;
-          float mn;
-          travel = 100;
-          
-          
-          if(theta > planets[desired].locate)
-          {
-            mx = theta;
-            mn = planets[desired].locate;
-          }//end if
-          else
-          {
-            mx = theta;
-            mn = planets[desired].locate;
-          }//end else
-          
-          transition = (diff(theta,planets[desired].locate) / travel);
-          //transition = (mx - mn) / travel;
+          travel = 80;
+          transition = -(diff(theta,planets[desired].locate) / travel);
         }//end if
         else if(travel == 1)
         {
@@ -172,7 +155,7 @@ void rotation()
         }//end else if
         else
         {
-          theta = theta - transition;
+          theta -= transition;
           travel--;
         }//end else
       }//end if
