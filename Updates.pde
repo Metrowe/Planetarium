@@ -28,18 +28,38 @@ void scaleChange()
   }//end for
 }//end scaleChange
 
-void rotation()
+void startRotate()
 {
-    if(toggle)
+  
+}//end startRotate
+
+void rotation(char dir)
+{
+  switch(motion)
+  {
+    case 0:
     {
-      theta += radians(3);
-      if(theta > TWO_PI)
+      if(dir == 'l')
       {
-        theta = theta % TWO_PI;
-      }//end if
-    }//end if
-    else
-    {
+        transition = gap / travel;
+      }
+       if(travel == 0)
+        {
+          travel = 80;
+          transition = gap / travel;
+        }//end if
+        else if(travel == 1)
+        {
+          theta = planets[desired].locate;
+          travel = 0;
+        }//end else if
+        else
+        {
+          theta -= transition;
+          travel--;
+        }//end else
+      ///////////////////////////////////////////////////////////////
+      /*
       if(planets[desired].locate != theta)
       {
         if(travel == 0)
@@ -62,5 +82,20 @@ void rotation()
       {
         //control = true;
       }//end else
-    }//end else
-}//end
+      
+      */
+      //////////////////////////////////////////////
+    }//end case 0
+    
+    case 1:
+    {
+      theta += radians(spin);
+      if(theta > TWO_PI)
+      {
+        theta = theta % TWO_PI;
+      }//end if
+      rotate(radians(spin));
+    }//end case 0
+  
+  }//end switch
+}//end rotation

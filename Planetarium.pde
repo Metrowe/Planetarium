@@ -15,15 +15,18 @@ void setup()
 
   view = 1;
   switchView();
+  motion = 0;
+  
   
   gap = TWO_PI / planets.length;
 
   scaleChange();
   
+  spin = 1.5;
   theta = 0;
   desired = 0;
   
-  toggle = false;
+  motion = 0;
   travel = 0;
   
   for(int i = 0;i < planets.length;i++)
@@ -49,7 +52,8 @@ float X,Y;
 int view;
 float scale;
 int desired;
-boolean toggle;
+int motion;
+float spin;
 int travel;
 float transition;
 
@@ -63,19 +67,21 @@ void keyPressed()
   
   if(keyCode == DOWN)
   {
-    toggle = !toggle;
+    //toggle = !toggle;
   }//end if
   
-  if(keyCode == LEFT && !toggle)
+  if(keyCode == LEFT)// && !toggle)
   {
-    desired = (desired-1) % planets.length;
-    if(desired < 0) desired += planets.length;
+    rotation();
+    //desired = (desired-1) % planets.length;
+    //if(desired < 0) desired += planets.length;
     //desired = (theta-gap)% TWO_PI;
   }//end if
   
-  if(keyCode == RIGHT && !toggle)
+  if(keyCode == RIGHT)// && !toggle)
   {
-    desired = (desired+1) % planets.length;
+    rotation();
+    //desired = (desired+1) % planets.length;
     //desired = (theta+gap)% TWO_PI;
   }//end if
 }//end keyPressed
