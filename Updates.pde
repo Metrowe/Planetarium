@@ -20,13 +20,13 @@ void switchView()
   
 }//switchView
 
-void scaleChange()
+void setGap()
 {
   for(int i = 0;i < planets.length;i++)
   {
-    planets[i].create(/*X, Y, */(gap*i),scale);
+    planets[i].create((gap*i));
   }//end for
-}//end scaleChange
+}//end setGap
 
 void startRotate(char dir)
 {
@@ -53,13 +53,6 @@ void rotation()
         ready = true;
         rotate(theta);
       }//end if
-      /*
-      else if(travel == 1)
-      {
-        rotate(transition);
-        travel = 0;
-      }//end else if
-      */
       else
       {
         rotate(theta);

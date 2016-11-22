@@ -8,10 +8,10 @@ void setup()
   
   p = 0;
   //newPlanet("Mars",0.2,color(255,0,0));
-  newPlanet("Mars",200,color(255,0,0));
-  newPlanet("Pluto",0.1,color(0,0,255));
-  newPlanet("Venus",0.3,color(200,0,200));
-  newPlanet("Neptune",0.15,color(0,255,0));
+  newPlanet("Mars",40,color(255,0,0));
+  newPlanet("Pluto",10.1,color(0,0,255));
+  newPlanet("Venus",50,color(200,0,200));
+  newPlanet("Neptune",30,color(0,255,0));
 
   view = 1;
   switchView();
@@ -21,7 +21,7 @@ void setup()
   
   gap = TWO_PI / planets.length;
 
-  scaleChange();
+  setGap();
   
   spin = 1.5;
   theta = 0;
@@ -33,7 +33,6 @@ void setup()
   for(int i = 0;i < planets.length;i++)
   {
     planets[i].locate = gap*i;
-    print("gap * i = ");println(gap*i);
   }//end for
   
   for(int i = 0;i < numstars;i++)
@@ -93,21 +92,23 @@ void newPlanet(String name,float size,color c)
 
 void light()
 {
-  noFill();
+  strokeWeight(2);
   
-  strokeWeight(3);
-  
-  float x;
-  float y;
-  
-  for(int i = 0;i < numstars;i++)
+  for(int i = 0;i < stars.length;i++)
   {
     stroke(stars[i].c);
-    x = sin(stars[i].angle+theta) * stars[i].dist * scale;
-    y = cos(stars[i].angle+theta) * stars[i].dist * scale;
-    point(x+X,y+Y);
+    point(stars[i].x,stars[i].y);
   }//end for
 }//end light
+
+void rock()
+{
+  for(int i = 0;i < planets.length;i++)
+  {
+    shape(planets[i].shape);
+  }//end for
+}//end rock
+
 
 void ring(float X,float Y,float scale)
 {
@@ -124,21 +125,14 @@ void draw()
   
   background(0);
   
-  //rotation();
-  
-  //light();
-  
-  ring(X,Y,scale);
-  
-  //translate(X, Y);
+  light();
   
   pushMatrix();
   translate(X, Y);
   rotation();
      
-  for(int i = 0;i < planets.length;i++)
-  {
-    shape(planets[i].shape);
-  }//end for
+  rock();
+  
   popMatrix();
+  ring(X,Y,scale);
 }//end draw
