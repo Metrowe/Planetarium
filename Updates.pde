@@ -24,7 +24,7 @@ void scaleChange()
 {
   for(int i = 0;i < planets.length;i++)
   {
-    planets[i].create(X, Y, theta+(gap*i),scale);
+    planets[i].create(/*X, Y, */(gap*i),scale);
   }//end for
 }//end scaleChange
 
@@ -51,44 +51,22 @@ void rotation()
       if(travel == 0)
       {
         ready = true;
+        rotate(theta);
       }//end if
+      /*
       else if(travel == 1)
       {
-        theta = planets[desired].locate;
+        rotate(transition);
         travel = 0;
       }//end else if
-        else
-        {
-          theta -= transition;
-          travel--;
-        }//end else
-      ///////////////////////////////////////////////////////////////
-      /*
-      if(planets[desired].locate != theta)
-      {
-        if(travel == 0)
-        {
-          travel = 80;
-          transition = -(diff(theta,planets[desired].locate) / travel);
-        }//end if
-        else if(travel == 1)
-        {
-          theta = planets[desired].locate;
-          travel = 0;
-        }//end else if
-        else
-        {
-          theta -= transition;
-          travel--;
-        }//end else
-      }//end if
+      */
       else
       {
-        //control = true;
+        rotate(theta);
+        theta += transition;
+        travel--;
       }//end else
-      
-      */
-      //////////////////////////////////////////////
+      break;
     }//end case 0
     
     case 1:
@@ -99,6 +77,7 @@ void rotation()
         theta = theta % TWO_PI;
       }//end if
       rotate(radians(spin));
+      break;
     }//end case 0
   
   }//end switch

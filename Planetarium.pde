@@ -17,6 +17,7 @@ void setup()
   switchView();
   motion = 0;
   
+  scale = 50;
   
   gap = TWO_PI / planets.length;
 
@@ -118,73 +119,26 @@ void ring(float X,float Y,float scale)
   ellipse(X,Y,scale,scale);
 }//end scale
 
-void rock(float X,float Y,float scale,float theta,Planet planets)
-{
-  fill(planets.c);
-  noStroke();
-  
-  float radius = scale/2;
-  float diam = scale * planets.size;
-  
-  float x = sin(theta) * radius;
-  float y = cos(theta) * radius;
-  
-  //float x = cos(theta) * radius;
-  //float y = sin(theta) * radius;
-  //float x = cos(theta) * radius;
-  //float y = tan(theta) * radius;
- 
-  ellipse(X+x,Y+y,diam,diam);
-}
-
-float diff(float a,float b)
-{
-  if(a > b)
-  {
-    return a-b;
-  }//end if
-  else
-  {
-    return b-a;
-  }//end else
-}//end diff
-
 void draw()
 {
-  //background(0);
-  print("desired = ");println(desired);
-  print("planets[desired].locate = ");println(planets[desired].locate);
-  print("theta = ");println(theta);
   
-  rotation();
+  background(0);
   
-  switch(view)
-  {
-    case 0:
-    {
-      X = width/2;
-      Y = -(height/2);
-      scale = height*2;
-      break;
-    }//end case 0
-    case 1:
-    {
-      X = width/2;
-      Y = height/2;
-      scale = height*0.8;
-      break;
-    }//end case 1
-  }//end switch
+  //rotation();
   
-  light();
+  //light();
   
   ring(X,Y,scale);
   
-  shape(planets[0].shape);
-  //ellipse(width/2,-250,1000,1000);
+  //translate(X, Y);
   
+  pushMatrix();
+  translate(X, Y);
+  rotation();
+     
   for(int i = 0;i < planets.length;i++)
   {
-    shape(planets[0].shape);
+    shape(planets[i].shape);
   }//end for
+  popMatrix();
 }//end draw
