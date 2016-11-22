@@ -7,7 +7,8 @@ void setup()
   size(500,500);
   
   p = 0;
-  newPlanet("Mars",0.2,color(255,0,0));
+  //newPlanet("Mars",0.2,color(255,0,0));
+  newPlanet("Mars",200,color(255,0,0));
   newPlanet("Pluto",0.1,color(0,0,255));
   newPlanet("Venus",0.3,color(200,0,200));
   newPlanet("Neptune",0.15,color(0,255,0));
@@ -17,7 +18,7 @@ void setup()
   gap = TWO_PI / planets.length;
   theta = 0;
   desired = 0;
-  mode = 1;
+  view = 1;
   toggle = false;
   travel = 0;
   
@@ -41,7 +42,7 @@ int p;
 float theta;
 float gap;
 float X,Y;
-int mode;
+int view;
 float scale;
 int desired;
 boolean toggle;
@@ -52,7 +53,7 @@ void keyPressed()
 {
   if(keyCode == UP)
   {
-    mode = (mode + 1) % 2;
+    view = (view + 1) % 2;
   }//end if
   
   if(keyCode == DOWN)
@@ -180,14 +181,14 @@ float diff(float a,float b)
 
 void draw()
 {
-  background(0);
+  //background(0);
   print("desired = ");println(desired);
   print("planets[desired].locate = ");println(planets[desired].locate);
   print("theta = ");println(theta);
   
   rotation();
   
-  switch(mode)
+  switch(view)
   {
     case 0:
     {
@@ -209,11 +210,12 @@ void draw()
   
   ring(X,Y,scale);
   
+  shape(planets[0].shape);
   //ellipse(width/2,-250,1000,1000);
   
   for(int i = 0;i < planets.length;i++)
   {
-    rock(X,Y,scale,theta + (gap*i),planets[i]);
+    //rock(X,Y,scale,theta + (gap*i),planets[i]);
     
   }//end for
 }//end draw
