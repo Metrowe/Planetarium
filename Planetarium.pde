@@ -19,6 +19,7 @@ void setup()
   theta = 0;
   desired = 0;
   view = 1;
+  switchView();
   toggle = false;
   travel = 0;
   
@@ -54,6 +55,7 @@ void keyPressed()
   if(keyCode == UP)
   {
     view = (view + 1) % 2;
+    switchView();
   }//end if
   
   if(keyCode == DOWN)
