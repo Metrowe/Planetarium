@@ -21,7 +21,7 @@ void setup()
   toggle = false;
   travel = 0;
   
-  for(int i = 0;i < numplanets;i++)
+  for(int i = 0;i < planets.length;i++)
   {
     planets[i].locate = gap*i;
     print("gap * i = ");println(gap*i);
@@ -62,28 +62,16 @@ void keyPressed()
   
   if(keyCode == LEFT && !toggle)
   {
-    desired = (desired-1) % numplanets;
-    if(desired < 0) desired += numplanets;
+    desired = (desired-1) % planets.length;
+    if(desired < 0) desired += planets.length;
     //desired = (theta-gap)% TWO_PI;
   }//end if
   
   if(keyCode == RIGHT && !toggle)
   {
-    desired = (desired+1) % numplanets;
+    desired = (desired+1) % planets.length;
     //desired = (theta+gap)% TWO_PI;
   }//end if
-
-  /*
-  if(keyCode == LEFT)
-  {
-    rotation(theta-gap);
-  }//end if
-  
-  if(keyCode == RIGHT)
-  {
-    theta += gap;
-  }//end if
-  */
 }//end keyPressed
 
 void newPlanet(String name,float size,color c)
