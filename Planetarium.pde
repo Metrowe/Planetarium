@@ -56,6 +56,7 @@ int motion;
 float spin;
 int travel;
 float transition;
+boolean ready;
 
 void keyPressed()
 {
@@ -70,19 +71,14 @@ void keyPressed()
     //toggle = !toggle;
   }//end if
   
-  if(keyCode == LEFT)// && !toggle)
+  if(keyCode == LEFT && motion == 0 && ready)
   {
-    rotation();
-    //desired = (desired-1) % planets.length;
-    //if(desired < 0) desired += planets.length;
-    //desired = (theta-gap)% TWO_PI;
+    startRotate('l');
   }//end if
   
-  if(keyCode == RIGHT)// && !toggle)
+  if(keyCode == RIGHT && motion == 0 && ready)
   {
-    rotation();
-    //desired = (desired+1) % planets.length;
-    //desired = (theta+gap)% TWO_PI;
+    startRotate('r');
   }//end if
 }//end keyPressed
 

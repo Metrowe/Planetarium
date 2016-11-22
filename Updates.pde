@@ -28,31 +28,35 @@ void scaleChange()
   }//end for
 }//end scaleChange
 
-void startRotate()
+void startRotate(char dir)
 {
-  
+  ready = false;
+  travel = 80;
+  if(dir == 'l')
+  {
+    transition = gap / travel;
+  }//end if
+  else
+  {
+    transition = -gap / travel;
+  }//end else
 }//end startRotate
 
-void rotation(char dir)
+void rotation()
 {
   switch(motion)
   {
     case 0:
     {
-      if(dir == 'l')
+      if(travel == 0)
       {
-        transition = gap / travel;
-      }
-       if(travel == 0)
-        {
-          travel = 80;
-          transition = gap / travel;
-        }//end if
-        else if(travel == 1)
-        {
-          theta = planets[desired].locate;
-          travel = 0;
-        }//end else if
+        ready = true;
+      }//end if
+      else if(travel == 1)
+      {
+        theta = planets[desired].locate;
+        travel = 0;
+      }//end else if
         else
         {
           theta -= transition;
