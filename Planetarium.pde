@@ -35,7 +35,11 @@ void setup()
   {
     stars[i] = new Star();
   }//end for
+  
+  player = new Player(width / 2, height / 2, 0, 50);
 }
+
+Player player;
 
 int numstars = 600;
 int numplanets = 4;
@@ -55,6 +59,8 @@ int travel;
 float spin;
 float transition;
 boolean ready;
+
+float timeDelta = 1.0f / 60.0f;
 
 void newPlanet(String name,float size,color c)
 {
@@ -82,7 +88,7 @@ void rock()
 }//end rock
 
 
-void ring(float X,float Y)
+void ring()
 {
   noFill();
   stroke(255);
@@ -96,7 +102,7 @@ void draw()
   scale(scale);
   
   light();
-  ring(X,Y);
+  ring();
   
   pushMatrix();
   translate(X, Y);
