@@ -13,13 +13,16 @@ void setup()
   newPlanet("Venus",0.3,color(200,0,200));
   newPlanet("Neptune",0.15,color(0,255,0));
 
-  
-  
-  gap = TWO_PI / planets.length;
-  theta = 0;
-  desired = 0;
   view = 1;
   switchView();
+  
+  gap = TWO_PI / planets.length;
+
+  scaleChange();
+  
+  theta = 0;
+  desired = 0;
+  
   toggle = false;
   travel = 0;
   
@@ -132,43 +135,6 @@ void rock(float X,float Y,float scale,float theta,Planet planets)
   ellipse(X+x,Y+y,diam,diam);
 }
 
-void rotation()
-{
-    if(toggle)
-    {
-      theta += radians(3);
-      if(theta > TWO_PI)
-      {
-        theta = theta % TWO_PI;
-      }//end if
-    }//end if
-    else
-    {
-      if(planets[desired].locate != theta)
-      {
-        if(travel == 0)
-        {
-          travel = 80;
-          transition = -(diff(theta,planets[desired].locate) / travel);
-        }//end if
-        else if(travel == 1)
-        {
-          theta = planets[desired].locate;
-          travel = 0;
-        }//end else if
-        else
-        {
-          theta -= transition;
-          travel--;
-        }//end else
-      }//end if
-      else
-      {
-        //control = true;
-      }//end else
-    }//end else
-}//end
-
 float diff(float a,float b)
 {
   if(a > b)
@@ -217,7 +183,6 @@ void draw()
   
   for(int i = 0;i < planets.length;i++)
   {
-    //rock(X,Y,scale,theta + (gap*i),planets[i]);
-    
+    shape(planets[0].shape);
   }//end for
 }//end draw
