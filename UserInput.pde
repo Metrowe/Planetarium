@@ -8,7 +8,8 @@ void keyPressed()
   
   if(keyCode == DOWN)
   {
-    //toggle = !toggle;
+    motion = (motion + 1) % 2;
+    switchView();
   }//end if
   
   if(keyCode == LEFT && motion == 0 && ready)

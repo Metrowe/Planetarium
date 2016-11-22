@@ -4,32 +4,28 @@ This is the real file
 
 void setup()
 {
-  size(500,500);
+  size(700,700);
   
   p = 0;
-  //newPlanet("Mars",0.2,color(255,0,0));
   newPlanet("Mars",40,color(255,0,0));
   newPlanet("Pluto",10.1,color(0,0,255));
   newPlanet("Venus",50,color(200,0,200));
   newPlanet("Neptune",30,color(0,255,0));
 
-  view = 0;
-  switchView();
-  motion = 0;
-  
+  theta = 0;
+  thetaS = 0;
   scale = 50;
-  
-  gap = TWO_PI / planets.length;
-
-  setGap();
+  rad = 0.4;
   
   spin = 1.5;
-  theta = 0;
-  desired = 0;
-  
-  motion = 0;
   travel = 0;
   
+  motion = 0;
+  view = 0;
+  switchView();
+  
+  gap = TWO_PI / planets.length;
+  setGap();
   for(int i = 0;i < planets.length;i++)
   {
     planets[i].locate = gap*i;
@@ -46,22 +42,23 @@ int numplanets = 4;
 Planet[] planets = new Planet[numplanets];
 Star[] stars = new Star[numstars];
 int p;
-float theta;
+float theta, thetaS;
 float gap;
 float X,Y;
-int view;
+float rad;
 float scale;
-int desired;
+
+int view;
 int motion;
-float spin;
 int travel;
+
+float spin;
 float transition;
 boolean ready;
 
 void newPlanet(String name,float size,color c)
 {
   planets[p] = new Planet(name,size,c);
-  
   p++;
 }//end addPlanet
 
@@ -69,7 +66,6 @@ void newPlanet(String name,float size,color c)
 void light()
 {
   strokeWeight(2);
-  
   for(int i = 0;i < stars.length;i++)
   {
     stroke(stars[i].c);
@@ -86,31 +82,25 @@ void rock()
 }//end rock
 
 
-void ring(float X,float Y,float scale)
+void ring(float X,float Y)
 {
   noFill();
   stroke(255);
-  strokeWeight(5);
-  //strokeWeight(scale/height);
-  
-  ellipse(X,Y,scale,scale);
+  strokeWeight(2);
+  ellipse(X,Y,width*rad,height*rad);
 }//end scale
 
 void draw()
 {
-  
   background(0);
-  
   scale(scale);
   
   light();
+  ring(X,Y);
   
   pushMatrix();
   translate(X, Y);
   rotation();
-     
   rock();
-  
   popMatrix();
-  ring(X,Y,scale);
 }//end draw

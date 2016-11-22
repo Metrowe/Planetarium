@@ -4,20 +4,20 @@ void switchView()
   {
     case 0:
     {
+      scale = 1;
       X = width/2;
       Y = height/2;
-      scale = 1;
       break;
     }//end case 0
+    
     case 1:
     {
-      X = width/2;
+      scale = 3;
+      X = (width/scale)*0.5;
       Y = -(height*0.3);
-      scale = 1.5;
       break;
     }//end case 1
   }//end switch
-  
 }//switchView
 
 void setGap()
@@ -64,14 +64,13 @@ void rotation()
     
     case 1:
     {
-      theta += radians(spin);
-      if(theta > TWO_PI)
+      thetaS += radians(spin);
+      if(thetaS > TWO_PI)
       {
-        theta = theta % TWO_PI;
+        thetaS = thetaS % TWO_PI;
       }//end if
-      rotate(radians(spin));
+      rotate(thetaS);
       break;
     }//end case 0
-  
   }//end switch
 }//end rotation
