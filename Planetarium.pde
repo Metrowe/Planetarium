@@ -124,12 +124,14 @@ void draw()
   translate(X, Y);
   rotation();
   rock();
+  asteroid.update();
+  asteroid.render();
   popMatrix();
   
   stroke(255);
   
-  asteroid.update();
-  asteroid.render();
+  //asteroid.update();
+  //asteroid.render();
   
   player.update();
   player.render();

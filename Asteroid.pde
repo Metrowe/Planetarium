@@ -7,6 +7,8 @@ class Asteroid
   PShape shape, base;
   PVector pos;
   PVector velocity;
+  PVector force;
+  PVector accel;
   /*
   Asteroid( String name,float size,color c  )
   {
@@ -23,7 +25,7 @@ class Asteroid
     println(scale);
     this.c = color(255,0,0);
     pos = new PVector(0, 0);
-    velocity = new PVector(10,10);
+    velocity = new PVector(0,0);
     
     create();
   }//end Planet
@@ -40,17 +42,25 @@ class Asteroid
   {
     pushMatrix(); // Stores the current transform
     translate(pos.x, pos.y);
+    //translate(0, 0);
     //rotate(theta); 
+    //shape(shape,pos.x,pos.y);
     shape(shape);
     popMatrix();
   }//end render
   
   void update()
   {
+    accel = PVector.div(force, mass);
+    velocity.add(PVector.mult(accel, timeDelta));
     pos.add(PVector.mult(velocity, timeDelta));
   }//end update
 }//end class Planet
-
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/*
+F = GMm/R2
+force = (6.674*10−11)(asteroid.mass)(planets[i].mass)/sq(dist(asteroid.pos,planets[i].locate));
+*/
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 class Player
