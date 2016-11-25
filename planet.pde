@@ -3,7 +3,7 @@ class Planet
   String name;
   float size;
   color c;
-  float locate;
+  PVector locate;
   PShape shape, base;
 
   Planet()
@@ -17,6 +17,7 @@ class Planet
     this.name = name;
     this.size = size * scale;
     this.c = c;
+    locate = new PVector(0, 0);
   }//end Planet
   
   void create(float ang)
@@ -32,5 +33,11 @@ class Planet
   void render()
   {
     shape(shape);
+  }//end render
+  
+  void update()
+  {
+    locate.x = sin(theta) * rad;
+    locate.y = cos(theta) * rad;
   }//end render
 }//end class Planet

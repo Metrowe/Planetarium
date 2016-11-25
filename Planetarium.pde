@@ -27,25 +27,31 @@ void setup()
   
   gap = TWO_PI / planets.length;
   setGap();
+  /*
   for(int i = 0;i < planets.length;i++)
   {
     planets[i].locate = gap*i;
   }//end for
+  */
   
   for(int i = 0;i < numstars;i++)
   {
     stars[i] = new Star();
   }//end for
   
+  //asteroids[0] = new Asteroid();
+  asteroid = new Asteroid();
   player = new Player(width / 2, height / 2, 0, 50);
 }
 
 Player player;
+Asteroid asteroid;
 
 int numstars = 600;
 int numplanets = 4;
 Planet[] planets = new Planet[numplanets];
 Star[] stars = new Star[numstars];
+//Asteroid[] asteroids = new Asteroid[10];
 int p;
 float theta, thetaS;
 float gap;
@@ -85,6 +91,14 @@ void rock()
   for(int i = 0;i < planets.length;i++)
   {
     planets[i].render();
+    planets[i].update();
+    ///////////////////////////
+    if(i == 0)
+    {
+      println(planets[i].locate.x);
+      println(planets[i].locate.y);
+    }//end if
+    /////////////////////////
   }//end for
 }//end rock
 
@@ -112,6 +126,11 @@ void draw()
   popMatrix();
   
   stroke(255);
+  
+  asteroid.update();
+  asteroid.render();
+  
   player.update();
   player.render();
+  
 }//end draw

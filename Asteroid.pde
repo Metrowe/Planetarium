@@ -5,7 +5,8 @@ class Asteroid
   color c;
   float mass;
   PShape shape, base;
-
+  PVector pos;
+  PVector velocity;
   /*
   Asteroid( String name,float size,color c  )
   {
@@ -19,25 +20,31 @@ class Asteroid
   {
     this.size = scale * 0.02;
     this.c = color(200);
+    pos = new PVector(0, 0);
+    velocity = new PVector(5,5);
   }//end Planet
   
-  void create(float ang)
+  void create()
   {
-    shape = createShape(GROUP);
     ellipseMode(RADIUS);
-    shape = createShape(ELLIPSE,  sin(ang) * (scale*rad),cos(ang) * (scale*rad),  size,size);
-    base.setStrokeWeight(0);
-    base.setFill(c);
-    shape.addChild(base);
+    shape = createShape(ELLIPSE,  0,0,  size,size);
+    shape.setStrokeWeight(0);
+    shape.setFill(c);
   }//end create
  
   void render()
   {
     pushMatrix(); // Stores the current transform
-    translate(X, Y);
-    rotate(theta);    
+    translate(pos.x, pos.y);
+    //rotate(theta); 
+    shape(shape);
     popMatrix();
   }//end render
+  
+  void update()
+  {
+    pos.add(PVector.mult(velocity, timeDelta));
+  }//end update
 }//end class Planet
 
 //////////////////////////////////////////////////////////////////
