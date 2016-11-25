@@ -1,25 +1,31 @@
-/*
+
 class Asteroid
 {
-  String name;
   float size;
   color c;
-  float locate;
+  float mass;
   PShape shape, base;
 
-  
+  /*
   Asteroid( String name,float size,color c  )
   {
     this.name = name;
     this.size = size;
     this.c = c;
   }//end Planet
+  */
+  
+  Asteroid()
+  {
+    this.size = scale * 0.02;
+    this.c = color(200);
+  }//end Planet
   
   void create(float ang)
   {
     shape = createShape(GROUP);
     ellipseMode(RADIUS);
-    base = createShape(ELLIPSE,  sin(ang) * (width*rad),cos(ang) * (height*rad),  size,size);
+    shape = createShape(ELLIPSE,  sin(ang) * (scale*rad),cos(ang) * (scale*rad),  size,size);
     base.setStrokeWeight(0);
     base.setFill(c);
     shape.addChild(base);
@@ -33,7 +39,9 @@ class Asteroid
     popMatrix();
   }//end render
 }//end class Planet
-*/
+
+//////////////////////////////////////////////////////////////////
+
 class Player
 {
   PVector pos;

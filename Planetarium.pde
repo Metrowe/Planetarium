@@ -6,16 +6,17 @@ void setup()
 {
   size(700,700);
   
-  p = 0;
-  newPlanet("Mars",40,color(255,0,0));
-  newPlanet("Pluto",10.1,color(0,0,255));
-  newPlanet("Venus",50,color(200,0,200));
-  newPlanet("Neptune",30,color(0,255,0));
-
   theta = 0;
   thetaS = 0;
-  scale = 50;
-  rad = 0.4;
+  scale = ( (height+width)/2 );
+  rad = scale * 0.35;
+  
+  p = 0;
+  //newPlanet("Mars",0.04,color(255,0,0));
+  newPlanet("Mars",0.04,color(255,0,0));
+  newPlanet("Pluto",0.01,color(0,0,255));
+  newPlanet("Venus",0.05,color(200,0,200));
+  newPlanet("Neptune",0.03,color(0,255,0));
   
   spin = 1.5;
   travel = 0;
@@ -83,7 +84,7 @@ void rock()
 {
   for(int i = 0;i < planets.length;i++)
   {
-    shape(planets[i].shape);
+    planets[i].render();
   }//end for
 }//end rock
 
@@ -93,7 +94,7 @@ void ring()
   noFill();
   stroke(255);
   strokeWeight(2);
-  ellipse(X,Y,width*rad,height*rad);
+  ellipse(X,Y,rad,rad);
 }//end scale
 
 void draw()
@@ -109,4 +110,8 @@ void draw()
   rotation();
   rock();
   popMatrix();
+  
+  stroke(255);
+  player.update();
+  player.render();
 }//end draw

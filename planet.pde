@@ -15,7 +15,7 @@ class Planet
   Planet( String name,float size,color c  )
   {
     this.name = name;
-    this.size = size;
+    this.size = size * scale;
     this.c = c;
   }//end Planet
   
@@ -23,7 +23,7 @@ class Planet
   {
     shape = createShape(GROUP);
     ellipseMode(RADIUS);
-    base = createShape(ELLIPSE,  sin(ang) * (width*rad),cos(ang) * (height*rad),  size,size);
+    base = createShape(ELLIPSE,  sin(ang) * rad,cos(ang) * rad,  size,size);
     base.setStrokeWeight(0);
     base.setFill(c);
     shape.addChild(base);
@@ -31,9 +31,6 @@ class Planet
  
   void render()
   {
-    pushMatrix(); // Stores the current transform
-    translate(X, Y);
-    rotate(theta);    
-    popMatrix();
+    shape(shape);
   }//end render
 }//end class Planet
