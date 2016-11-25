@@ -18,10 +18,14 @@ class Asteroid
   
   Asteroid()
   {
-    this.size = scale * 0.02;
-    this.c = color(200);
+    this.size = proportion * 0.005;
+    //this.size = proportion * 2;
+    println(scale);
+    this.c = color(255,0,0);
     pos = new PVector(0, 0);
-    velocity = new PVector(5,5);
+    velocity = new PVector(10,10);
+    
+    create();
   }//end Planet
   
   void create()
@@ -47,7 +51,7 @@ class Asteroid
   }//end update
 }//end class Planet
 
-//////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 class Player
 {

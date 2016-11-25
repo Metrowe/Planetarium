@@ -8,9 +8,9 @@ void setup()
   
   theta = 0;
   thetaS = 0;
-  scale = ( (height+width)/2 );
-  rad = scale * 0.35;
-  
+  proportion = ( (height+width)/2 );
+  rad = proportion * 0.35;
+  println(proportion);
   p = 0;
   //newPlanet("Mars",0.04,color(255,0,0));
   newPlanet("Mars",0.04,color(255,0,0));
@@ -57,6 +57,7 @@ float theta, thetaS;
 float gap;
 float X,Y;
 float rad;
+float proportion;
 float scale;
 
 int view;
@@ -95,8 +96,8 @@ void rock()
     ///////////////////////////
     if(i == 0)
     {
-      println(planets[i].locate.x);
-      println(planets[i].locate.y);
+      //println(planets[i].locate.x);
+      //println(planets[i].locate.y);
     }//end if
     /////////////////////////
   }//end for
@@ -132,5 +133,7 @@ void draw()
   
   player.update();
   player.render();
+  
+  //println(scale);
   
 }//end draw

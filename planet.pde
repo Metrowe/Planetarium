@@ -15,7 +15,7 @@ class Planet
   Planet( String name,float size,color c  )
   {
     this.name = name;
-    this.size = size * scale;
+    this.size = size * proportion;
     this.c = c;
     locate = new PVector(0, 0);
   }//end Planet
