@@ -27,12 +27,6 @@ void setup()
   
   gap = TWO_PI / planets.length;
   setGap();
-  /*
-  for(int i = 0;i < planets.length;i++)
-  {
-    planets[i].locate = gap*i;
-  }//end for
-  */
   
   for(int i = 0;i < numstars;i++)
   {

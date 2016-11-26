@@ -20,12 +20,15 @@ class Asteroid
   
   Asteroid()
   {
-    this.size = proportion * 0.005;
+    this.size = proportion * 0.02;
     //this.size = proportion * 2;
     println(scale);
-    this.c = color(255,0,0);
+    this.c = color(255,100,50);
     pos = new PVector(0, 0);
-    velocity = new PVector(0,0);
+    //velocity = new PVector(0,0);
+    velocity = new PVector(1,1);
+    force = new PVector(0, 0);
+    accel = new PVector(0, 0);
     
     create();
   }//end Planet
@@ -51,9 +54,26 @@ class Asteroid
   
   void update()
   {
-    accel = PVector.div(force, mass);
-    velocity.add(PVector.mult(accel, timeDelta));
+    //accel = PVector.div(force, mass);
+    //velocity.add(PVector.mult(accel, timeDelta));
     pos.add(PVector.mult(velocity, timeDelta));
+    if( pos.x < -(width*0.5) )
+    {
+      pos.x = width*0.5;
+    }//end if
+    else if( pos.x > width*0.5 )
+    {
+      pos.x = -(width*0.5);
+    }//end if
+    
+    if( pos.y < -(height*0.5) )
+    {
+      pos.y = height*0.5;
+    }//end if
+    else if( pos.y > height*0.5 )
+    {
+      pos.y = -(height*0.5);
+    }//end if
   }//end update
 }//end class Planet
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

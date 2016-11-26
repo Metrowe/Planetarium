@@ -22,6 +22,7 @@ void switchView()
 
 void setGap()
 {
+  
   for(int i = 0;i < planets.length;i++)
   {
     planets[i].create((gap*i));
