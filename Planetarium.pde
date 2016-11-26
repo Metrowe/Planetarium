@@ -36,6 +36,12 @@ void setup()
   //asteroids[0] = new Asteroid();
   asteroid = new Asteroid();
   player = new Player(width / 2, height / 2, 0, 50);
+  
+  
+  
+  
+  
+  
 }
 
 Player player;
@@ -64,6 +70,8 @@ boolean ready;
 
 float timeDelta = 1.0f / 60.0f;
 
+
+
 void newPlanet(String name,float size,color c,float mass)
 {
   planets[p] = new Planet(name,size,c,mass);
@@ -90,8 +98,8 @@ void rock()
     ///////////////////////////
     if(i == 0)
     {
-      //println(planets[i].locate.x);
-      //println(planets[i].locate.y);
+      println(planets[i].locate.x);
+      println(planets[i].locate.y);
     }//end if
     /////////////////////////
   }//end for
@@ -108,6 +116,8 @@ void ring()
 
 void draw()
 {
+
+  
   background(0);
   scale(scale);
   
@@ -117,8 +127,9 @@ void draw()
   pushMatrix();
   translate(X, Y);
   
-  pushMatrix();
+
   
+  pushMatrix();
   rotation();
   rock();
   popMatrix();

@@ -27,8 +27,9 @@ class Asteroid
     this.c = color(255,100,50);
     //pos = new PVector(-width*0.5, 0);
     pos = new PVector(-width*0.5, 200);
+    //pos = new PVector(0,0);
     //velocity = new PVector(0,0);
-    velocity = new PVector(70,0);
+    velocity = new PVector(5,10);
     force = new PVector(0, 0);
     accel = new PVector(0, 0);
     mass = 1;
@@ -82,20 +83,29 @@ class Asteroid
   
   void calcForce(Planet p)
   {
-    float angle = PVector.angleBetween(pos, xy);
+    //float angle = PVector.angleBetween(pos, xy);
+    //PVector temp = new PVector(0, 0);
+    
+    //temp.x = p.locate.x - pos.x;
+    //temp.x = p.locate.x - pos.x;
+    
+    float angle = atan2(p.locate.x - pos.x, p.locate.y - pos.y);
+    angle += radians(90);
     float dist = pos.dist(p.locate);
     //float scalarForce = (  (6.674 * pow(10,-11) )*(asteroid.mass)*(p.mass))  /sq( dist );
     
     //float scalarForce = (  (6.674  )*(asteroid.mass)*(p.mass))  /sq( dist*2000 );
-    float scalarForce = 5;
+    float scalarForce = 1;
     
     //println(scalarForce);
-    println(degrees(angle));
+    //println(degrees(angle));
     force.x = sin(angle)*scalarForce;
     force.y = -cos(angle)*scalarForce;
     
+    
     accel = PVector.div(force, mass);
     velocity.add(PVector.mult(accel, timeDelta));
+    //velocity.add(PVector.mult(accel, timeDelta));
     /*
     tan(angle) = o/a;
     sin(angle) = o/h;
