@@ -26,9 +26,10 @@ class Asteroid
     this.c = color(255,100,50);
     pos = new PVector(0, 0);
     //velocity = new PVector(0,0);
-    velocity = new PVector(1,1);
+    velocity = new PVector(70,10);
     force = new PVector(0, 0);
     accel = new PVector(0, 0);
+    mass = 50;
     
     create();
   }//end Planet
@@ -75,7 +76,25 @@ class Asteroid
       pos.y = -(height*0.5);
     }//end if
   }//end update
+  
+  void calcForce(Planet p)
+  {
+    float angle = PVector.angleBetween(pos, p.locate);
+    float dist = pos.dist(p.locate);
+    float scalarForce = (  (6.674 * pow(10,-11) )*(asteroid.mass)*(p.mass))  /sq( dist );
+    
+    force.x = sin(angle)*scalarForce;
+    force.y = cos(angle)*scalarForce;
+    /*
+    tan(angle) = o/a;
+    sin(angle) = o/h;
+    cos(angle) = a/h;
+    */
+
+  }//end calcForce
 }//end class Planet
+
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /*
 F = GMm/R2

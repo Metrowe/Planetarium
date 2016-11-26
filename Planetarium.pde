@@ -13,10 +13,10 @@ void setup()
   println(proportion);
   p = 0;
   //newPlanet("Mars",0.04,color(255,0,0));
-  newPlanet("Mars",0.04,color(255,0,0));
-  newPlanet("Pluto",0.01,color(0,0,255));
-  newPlanet("Venus",0.05,color(200,0,200));
-  newPlanet("Neptune",0.03,color(0,255,0));
+  newPlanet("Mars",0.04,color(255,0,0),400);
+  newPlanet("Pluto",0.01,color(0,0,255),10);
+  newPlanet("Venus",0.05,color(200,0,200),10);
+  newPlanet("Neptune",0.03,color(0,255,0),10);
   
   spin = 1.5;
   travel = 0;
@@ -64,9 +64,9 @@ boolean ready;
 
 float timeDelta = 1.0f / 60.0f;
 
-void newPlanet(String name,float size,color c)
+void newPlanet(String name,float size,color c,float mass)
 {
-  planets[p] = new Planet(name,size,c);
+  planets[p] = new Planet(name,size,c,mass);
   p++;
 }//end addPlanet
 

@@ -2,6 +2,7 @@ class Planet
 {
   String name;
   float size;
+  float mass;
   color c;
   PVector locate;
   PShape shape, base;
@@ -12,10 +13,11 @@ class Planet
     size = random(0.1,0.5);  c = color(random(255),random(255),random(255));
   }//end Planet
   
-  Planet( String name,float size,color c  )
+  Planet( String name,float size,color c,float mass  )
   {
     this.name = name;
     this.size = size * proportion;
+    this.mass = mass;
     this.c = c;
     locate = new PVector(0, 0);
   }//end Planet
