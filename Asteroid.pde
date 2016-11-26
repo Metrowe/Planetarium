@@ -20,16 +20,16 @@ class Asteroid
   
   Asteroid()
   {
-    this.size = proportion * 0.02;
-    //this.size = proportion * 2;
+    this.size = proportion * 0.005;
     println(scale);
     this.c = color(255,100,50);
-    pos = new PVector(0, 0);
+    pos = new PVector(-width*0.5, 0);
     //velocity = new PVector(0,0);
-    velocity = new PVector(70,10);
+    velocity = new PVector(70,0);
     force = new PVector(0, 0);
     accel = new PVector(0, 0);
     mass = 50;
+    //mass = 500000;
     
     create();
   }//end Planet
@@ -55,8 +55,8 @@ class Asteroid
   
   void update()
   {
-    //accel = PVector.div(force, mass);
-    //velocity.add(PVector.mult(accel, timeDelta));
+    calcForce(planets[0]);
+    
     pos.add(PVector.mult(velocity, timeDelta));
     if( pos.x < -(width*0.5) )
     {
@@ -81,10 +81,16 @@ class Asteroid
   {
     float angle = PVector.angleBetween(pos, p.locate);
     float dist = pos.dist(p.locate);
-    float scalarForce = (  (6.674 * pow(10,-11) )*(asteroid.mass)*(p.mass))  /sq( dist );
+    //float scalarForce = (  (6.674 * pow(10,-11) )*(asteroid.mass)*(p.mass))  /sq( dist );
     
+    float scalarForce = (  (6.674  )*(asteroid.mass)*(p.mass))  /sq( dist*2000 );
+    
+    println(scalarForce);
     force.x = sin(angle)*scalarForce;
     force.y = cos(angle)*scalarForce;
+    
+    accel = PVector.div(force, mass);
+    velocity.add(PVector.mult(accel, timeDelta));
     /*
     tan(angle) = o/a;
     sin(angle) = o/h;
@@ -146,10 +152,20 @@ class Player
   void render()
   {
     pushMatrix();
-    translate(pos.x, pos.y);
-    rotate(theta);    
-    shape(shape, 0, 0);
+        translate(pos.x, pos.y);
+        //rotate(theta);    
+        shape(shape, 0, 0);
     popMatrix();
+    /*
+    pushMatrix();
+      translate(X, Y);
+      pushMatrix();
+        translate(pos.x, pos.y);
+        //rotate(theta);    
+        shape(shape, 0, 0);
+      popMatrix();
+    popMatrix();
+    */
   }
   
   PVector force;
@@ -177,6 +193,7 @@ class Player
     {
       theta += 0.1f;
     }
+    
     
     accel = PVector.div(force, mass);
     velocity.add(PVector.mult(accel, timeDelta));

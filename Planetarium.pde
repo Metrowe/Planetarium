@@ -13,7 +13,7 @@ void setup()
   println(proportion);
   p = 0;
   //newPlanet("Mars",0.04,color(255,0,0));
-  newPlanet("Mars",0.04,color(255,0,0),400);
+  newPlanet("Mars",0.04,color(255,0,0),999999999);
   newPlanet("Pluto",0.01,color(0,0,255),10);
   newPlanet("Venus",0.05,color(200,0,200),10);
   newPlanet("Neptune",0.03,color(0,255,0),10);
@@ -116,10 +116,16 @@ void draw()
   
   pushMatrix();
   translate(X, Y);
+  
+  pushMatrix();
+  
   rotation();
   rock();
+  popMatrix();
+  
   asteroid.update();
   asteroid.render();
+  
   popMatrix();
   
   stroke(255);
