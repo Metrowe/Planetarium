@@ -15,8 +15,8 @@ void setup()
   //newPlanet("Mars",0.04,color(255,0,0));
   newPlanet("Mars",0.04,color(255,0,0),999999999);
   newPlanet("Pluto",0.01,color(0,0,255),10);
-  newPlanet("Venus",0.05,color(200,0,200),10);
-  newPlanet("Neptune",0.03,color(0,255,0),10);
+ // newPlanet("Venus",0.05,color(200,0,200),10);
+  //newPlanet("Neptune",0.03,color(0,255,0),10);
   
   spin = 1.5;
   travel = 0;
@@ -48,7 +48,7 @@ Player player;
 Asteroid asteroid;
 
 int numstars = 600;
-int numplanets = 4;
+int numplanets = 2;
 Planet[] planets = new Planet[numplanets];
 Star[] stars = new Star[numstars];
 //Asteroid[] asteroids = new Asteroid[10];

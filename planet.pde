@@ -40,6 +40,6 @@ class Planet
   void update()
   {
     locate.x = sin(theta) * rad;
-    locate.y = cos(theta) * rad;
+    locate.y = -cos(theta) * rad;
   }//end render
 }//end class Planet
