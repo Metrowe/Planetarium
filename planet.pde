@@ -3,6 +3,7 @@ class Planet
   String name;
   float size;
   float mass;
+  float space;
   color c;
   PVector locate;
   PShape shape, base;
@@ -39,7 +40,7 @@ class Planet
   
   void update()
   {
-    locate.x = sin(theta) * rad;
-    locate.y = -cos(theta) * rad;
+    locate.x = sin(theta+space) * rad;
+    locate.y = -cos(theta+space) * rad;
   }//end render
 }//end class Planet
