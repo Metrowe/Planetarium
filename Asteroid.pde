@@ -27,9 +27,10 @@ class Asteroid
     this.c = color(255,100,50);
     //pos = new PVector(-width*0.5, 0);
     //pos = new PVector(-width*0.5, 200);
-    pos = new PVector(0,200);
+    pos = new PVector(-width*0.5,random(-350,0));
+    //pos = new PVector(-width*0.5,-200);
     //velocity = new PVector(0,0);
-    velocity = new PVector(5,10);
+    velocity = new PVector(80,0);
     force = new PVector(0, 0);
     accel = new PVector(0, 0);
     mass = 1;
@@ -66,7 +67,7 @@ class Asteroid
     velocity.add(PVector.mult(accel, timeDelta));
     pos.add(PVector.mult(velocity, timeDelta));
     force.x = force.y = 0;
-    velocity.mult(0.99f);
+    //velocity.mult(0.99f);
     wrap();
 
     
@@ -98,15 +99,21 @@ class Asteroid
     float theta = atan2(pos.y - p.locate.y, pos.x - p.locate.x)-PI/2;
     float dist = pos.dist(p.locate);
     
-    float scalarForce = 50;
-    
-    PVector direction = new PVector(sin(theta), -cos(theta));
-    /*
-    forward.x = sin(theta);
-    forward.y  = -cos(theta);
-*/
-
-    force.add(PVector.mult(direction, scalarForce));
+    //float scalarForce = (  (6.674 * pow(10,-11) )*(asteroid.mass)*(p.mass))  /sq( dist );
+    if(dist > p.size)
+    {
+      float scalarForce = (  (6.674 * pow(10,-3) )*(asteroid.mass)*(p.mass))  /sq( dist );
+      
+      //float scalarForce = 50;
+      
+      PVector direction = new PVector(sin(theta), -cos(theta));
+      /*
+      forward.x = sin(theta);
+      forward.y  = -cos(theta);
+  */
+  
+      force.add(PVector.mult(direction, scalarForce));
+    }//end if
     //float angle = PVector.angleBetween(pos, xy);
     //PVector temp = new PVector(0, 0);
     
