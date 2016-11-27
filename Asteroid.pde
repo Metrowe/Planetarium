@@ -30,7 +30,7 @@ class Asteroid
     pos = new PVector(-width*0.5,random(-350,0));
     //pos = new PVector(-width*0.5,-200);
     //velocity = new PVector(0,0);
-    velocity = new PVector(80,0);
+    velocity = new PVector(120,0);
     force = new PVector(0, 0);
     accel = new PVector(0, 0);
     mass = 1;
@@ -60,7 +60,11 @@ class Asteroid
   
   void update()
   {
-    calcForce(planets[0]);
+    //calcForce(planets[0]);
+    for(int i = 0;i < planets.length;i++)
+    {
+      calcForce(planets[i]);
+    }//end for
     
     
     accel = PVector.div(force, mass);
