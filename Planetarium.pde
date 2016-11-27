@@ -25,7 +25,7 @@ void setup()
   view = 0;
   switchView();
   
-  gap = TWO_PI / planets.length;
+  gap = TWO_PI / planets.size();
   setGap();
   
   for(int i = 0;i < numstars;i++)
@@ -49,7 +49,8 @@ Asteroid asteroid;
 
 int numstars = 600;
 int numplanets = 4;
-Planet[] planets = new Planet[numplanets];
+//Planet[] planets = new Planet[numplanets];
+ArrayList<Planet> planets = new ArrayList<Planet>();
 Star[] stars = new Star[numstars];
 //Asteroid[] asteroids = new Asteroid[10];
 int p;
@@ -74,8 +75,8 @@ float timeDelta = 1.0f / 60.0f;
 
 void newPlanet(String name,float size,color c,float mass)
 {
-  planets[p] = new Planet(name,size,c,mass);
-  p++;
+  Planet local = new Planet(name,size,c,mass);
+  planets.add(local);
 }//end addPlanet
 
 
@@ -91,15 +92,17 @@ void light()
 
 void rock()
 {
-  for(int i = 0;i < planets.length;i++)
+  for(int i = 0;i < planets.size();i++)
   {
-    planets[i].render();
-    planets[i].update();
+    Planet tempPlanet = planets.get(i);
+    
+    tempPlanet.render();
+    tempPlanet.update();
     ///////////////////////////
     if(i == 0)
     {
-      println(planets[i].locate.x);
-      println(planets[i].locate.y);
+      println(tempPlanet.locate.x);
+      println(tempPlanet.locate.y);
     }//end if
     /////////////////////////
   }//end for

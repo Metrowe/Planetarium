@@ -61,9 +61,10 @@ class Asteroid
   void update()
   {
     //calcForce(planets[0]);
-    for(int i = 0;i < planets.length;i++)
+    for(int i = 0;i < planets.size();i++)
     {
-      calcForce(planets[i]);
+      Planet tempPlanet = planets.get(i);
+      calcForce(tempPlanet);
     }//end for
     
     
@@ -148,6 +149,15 @@ class Asteroid
   }//end calcForce
 }//end class Planet
 
+/*
+code for future reference
+for (int i = particles.size() - 1; i >= 0; i--) 
+{
+  Particle part = particles.get(i);
+  if (part.finished()) {
+    particles.remove(i);
+  }
+}
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /*
