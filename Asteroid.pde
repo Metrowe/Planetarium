@@ -10,8 +10,28 @@ class Asteroid
   PVector velocity;
   PVector force;
   PVector accel;
+  int current;
+    
   
-  PVector xy = new PVector(0, 0);
+  PVector[] trailPos = new PVector[10];
+  /*
+  trailPos[0] = new PVector();
+  trailPos[0].x = 7;
+  */
+  
+  
+  /*
+  PVector[] vectors = new PVector[];
+
+// Create a vector for array position 0
+vectors[0] = new PVector();
+
+// Modify the PVector at position 0
+vectors[0].x = 9;
+vectors[0].y = 8;
+vectors[0].z = 7; 
+*/
+  
   /*
   Asteroid( String name,float size,color c  )
   {
@@ -26,30 +46,32 @@ class Asteroid
     this.size = proportion * 0.005;
     this.c = color(0,255,255);
     int side = int(random(1,4));
+    int speed = 300;
+    
     switch(side)
     {
       case 1:
       {
         pos = new PVector(-width*0.5,random(-height*0.5,height*0.5));
-        velocity = new PVector(random(0,200),0);
+        velocity = new PVector(random(0,speed),0);
         break;
       }//end case 1
       case 2:
       {
         pos = new PVector(random(-width*0.5,width*0.5),-height*0.5);
-        velocity = new PVector(0,random(0,200));
+        velocity = new PVector(0,random(0,speed));
         break;
       }//end case 2
       case 3:
       {
         pos = new PVector(width*0.5,random(-height*0.5,height*0.5));
-        velocity = new PVector(random(0,-200),0);
+        velocity = new PVector(random(0,-speed),0);
         break;
       }//end case 3
       case 4:
       {
         pos = new PVector(random(-width*0.5,width*0.5),height*0.5);
-        velocity = new PVector(0,random(0,-200));
+        velocity = new PVector(0,random(0,-speed));
         break;
       }//end case 4
       default:
@@ -58,7 +80,12 @@ class Asteroid
       }
     }//end switch
     
-
+    for(int i = 0;i < trailPos.length;i++)
+    {
+      trailPos[i] = new PVector(pos.x,pos.y);
+    }//end for
+    
+    current = 0;
     force = new PVector(0, 0);
     accel = new PVector(0, 0);
     mass = 1;
@@ -97,6 +124,17 @@ class Asteroid
   }//end create
  
   void render()
+  {
+    pushMatrix(); // Stores the current transform
+    translate(pos.x, pos.y);
+    //translate(0, 0);
+    //rotate(theta); 
+    //shape(shape,pos.x,pos.y);
+    shape(shape);
+    popMatrix();
+  }//end render
+  
+  void trail()
   {
     pushMatrix(); // Stores the current transform
     translate(pos.x, pos.y);

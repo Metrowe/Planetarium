@@ -5,7 +5,7 @@ This is the real file
 void setup()
 {
   size(700,700);
-  
+  //fullScreen();
   theta = 0;
   thetaS = 0;
   proportion = ( (height+width)/2 );
@@ -57,7 +57,7 @@ ArrayList<Fragment> fragments = new ArrayList<Fragment>();
 Star[] stars = new Star[numstars];
 //Asteroid[] asteroids = new Asteroid[10];
 int p;
-float theta, thetaS;
+float theta, thetaS, thetaB;
 float gap;
 float X,Y;
 float rad;
@@ -107,11 +107,16 @@ void newFrags(float a, float b)
 void light()
 {
   strokeWeight(2);
+  pushMatrix();
+  translate(X,Y);
+  rotate(thetaB -= 0.0005);
   for(int i = 0;i < stars.length;i++)
   {
     stroke(stars[i].c);
     point(stars[i].x,stars[i].y);
   }//end for
+  
+  popMatrix();
 }//end light
 
 void rock()
