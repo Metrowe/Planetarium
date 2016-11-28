@@ -62,6 +62,7 @@ class Asteroid
   {
     //calcForce(planets[0]);
     for(int i = 0;i < planets.size();i++)
+    //for(int i = 0;i < 3;i++)
     {
       Planet tempPlanet = planets.get(i);
       calcForce(tempPlanet);
@@ -105,10 +106,10 @@ class Asteroid
     float dist = pos.dist(p.locate);
     
     //float scalarForce = (  (6.674 * pow(10,-11) )*(asteroid.mass)*(p.mass))  /sq( dist );
-    if(dist > p.size)
+    if(dist > p.size + size)
     {
-      float scalarForce = (  (6.674 * pow(10,-3) )*(asteroid.mass)*(p.mass))  /sq( dist );
-      
+      //float scalarForce = (  (6.674 * pow(10,-3) )*(asteroid.mass)*(p.mass))  /sq( dist );
+      float scalarForce = (  (6.674 * pow(10,3) )*(asteroid.mass)*(p.mass))  /sq( dist );
       //float scalarForce = 50;
       
       PVector direction = new PVector(sin(theta), -cos(theta));
@@ -165,99 +166,3 @@ F = GMm/R2
 force = (6.674*10−11)(asteroid.mass)(planets[i].mass)/sq(dist(asteroid.pos,planets[i].locate));
 */
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-class Player
-{
-  PVector pos;
-  PVector forward;
-  PVector velocity;
-  PVector accel;
-  float theta;
-  float size;
-  float radius;
-  float mass = 1;
-  PShape shape;
-  
-  Player(float x, float y, float theta, float size)
-  {
-    pos = new PVector(x, y);
-    forward = new PVector(0, -1);
-    accel = new PVector(0,0);
-    velocity = new PVector(0,0);
-    force = new PVector(0, 0);
-    this.theta = theta;
-    this.size = size;
-    radius = size / 2;
-    
-    create();
-    
-  }
-  
-  void create()
-  {
-    shape = createShape();
-    shape.beginShape();
-    shape.stroke(255);
-    shape.noFill();
-    shape.strokeWeight(2);
-    shape.vertex(-radius, radius);
-    shape.vertex(0, - radius);
-    shape.vertex(radius, radius);
-    shape.vertex(0, 0);
-    shape.endShape(CLOSE);
-  }
-  
-  void render()
-  {
-    pushMatrix();
-        translate(pos.x, pos.y);
-        //rotate(theta);    
-        shape(shape, 0, 0);
-    popMatrix();
-    /*
-    pushMatrix();
-      translate(X, Y);
-      pushMatrix();
-        translate(pos.x, pos.y);
-        //rotate(theta);    
-        shape(shape, 0, 0);
-      popMatrix();
-    popMatrix();
-    */
-  }
-  
-  PVector force;
-  float power = 100;
-  
-  
-  void update()
-  {
-      
-    forward.x = sin(theta);
-    forward.y  = -cos(theta);
-    if (keyCode == 'w')
-    {
-      force.add(PVector.mult(forward, power));      
-    }
-    if (keyCode == 's')
-    {
-      force.add(PVector.mult(forward, -power));      
-    }
-    if (keyCode == 'a')
-    {
-      theta -= 0.1f;
-    }
-    if (keyCode == 'd')
-    {
-      theta += 0.1f;
-    }
-    
-    
-    accel = PVector.div(force, mass);
-    velocity.add(PVector.mult(accel, timeDelta));
-    pos.add(PVector.mult(velocity, timeDelta));
-    force.x = force.y = 0;
-    velocity.mult(0.99f);
-  }
-  
-}

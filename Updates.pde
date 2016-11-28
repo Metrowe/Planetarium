@@ -27,7 +27,7 @@ void setGap()
   {
     Planet tempPlanet = planets.get(i);
     tempPlanet.create((gap*i));
-    tempPlanet.space = gap*i;
+    tempPlanet.space = -gap*i + PI;
   }//end for
 }//end setGap
 

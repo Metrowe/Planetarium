@@ -22,3 +22,9 @@ void keyPressed()
     startRotate('r');
   }//end if
 }//end keyPressed
+
+void mousePressed()
+{
+  asteroid.pos.x = mouseX-width*0.5;
+  asteroid.pos.y = mouseY-height*0.5;
+}//end mouseclicked

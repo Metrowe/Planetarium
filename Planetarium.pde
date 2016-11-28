@@ -13,12 +13,13 @@ void setup()
   //println(proportion);
   p = 0;
   //newPlanet("Mars",0.04,color(255,0,0));
-  newPlanet("Mars",0.04,color(255,0,0),99999999);
-  newPlanet("Pluto",0.01,color(0,0,255),99999999);
-  newPlanet("Venus",0.05,color(200,0,200),99999999);
-  newPlanet("Neptune",0.03,color(0,255,0),99999999);
+  newPlanet("Mars",0.04,color(255,0,0),400);
+  newPlanet("Pluto",0.01,color(0,0,255),100);
+  newPlanet("Venus",0.05,color(200,0,200),500);
+  newPlanet("Neptune",0.03,color(0,255,0),300);
+  newPlanet("Saturn",0.035,color(200,200,0),350);
   
-  spin = 1.5;
+  spin = 0.2;
   travel = 0;
   
   motion = 0;
