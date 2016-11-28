@@ -53,6 +53,7 @@ int numplanets = 4;
 //Planet[] planets = new Planet[numplanets];
 ArrayList<Planet> planets = new ArrayList<Planet>();
 ArrayList<Asteroid> asteroids = new ArrayList<Asteroid>();
+ArrayList<Fragment> fragments = new ArrayList<Fragment>();
 Star[] stars = new Star[numstars];
 //Asteroid[] asteroids = new Asteroid[10];
 int p;
@@ -93,6 +94,15 @@ void userAsteroid(float a, float b)
   asteroids.add(local);
 }//end addPlanet
 
+void newFrags(float a, float b)
+{
+  for(int i = 0;i < random(1,5);i++)
+  {
+    Fragment local = new Fragment(a, b);
+    fragments.add(local);
+  }
+}//end addPlanet
+
 
 void light()
 {
@@ -129,12 +139,30 @@ void smallRock()
     Asteroid tempAsteroid = asteroids.get(i);
     if (tempAsteroid.done) 
     {
+      newFrags(tempAsteroid.pos.x,tempAsteroid.pos.y);
       asteroids.remove(i);
     }
     else
     {
       tempAsteroid.update();
       tempAsteroid.render();
+    }//end else
+  }
+}//end rock
+
+void frag()
+{
+  for (int i = fragments.size() - 1; i > -1; i--) 
+  {
+    Fragment tempFrag = fragments.get(i);
+    if (tempFrag.shade < 0) 
+    {
+      fragments.remove(i);
+    }
+    else
+    {
+      tempFrag.update();
+      tempFrag.render();
     }//end else
   }
 }//end rock
@@ -151,7 +179,7 @@ void ring()
 void draw()
 {
   
-  
+  //switch(
   background(0);
   scale(scale);
   
@@ -161,7 +189,7 @@ void draw()
   pushMatrix();
   translate(X, Y);
   
-
+  
   
   pushMatrix();
   rotation();
@@ -170,7 +198,7 @@ void draw()
   
   
   smallRock();
-  
+  frag();
   
   //asteroid.update();
   //asteroid.render();
