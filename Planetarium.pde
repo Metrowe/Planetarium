@@ -150,7 +150,7 @@ void ring()
 
 void draw()
 {
-
+  
   
   background(0);
   scale(scale);
@@ -177,12 +177,15 @@ void draw()
   
   popMatrix();
   
-  stroke(255);
+  stroke(0);
+  fill(0);
   
   //asteroid.update();
   //asteroid.render();
   
   
   //println(scale);
-  
+  ////////////////////////////////////
+  //test function
+  generate();
 }//end draw

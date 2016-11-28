@@ -42,14 +42,15 @@ class Asteroid
   
   Asteroid(float a, float b)
   {
+    int temp = 200;
     this.size = proportion * 0.005;
-    this.c = color(255,100,50);
+    this.c = color(0,200,200);
     //pos = new PVector(-width*0.5, 0);
     //pos = new PVector(-width*0.5, 200);
     pos = new PVector(a,b);
     //pos = new PVector(-width*0.5,-200);
     //velocity = new PVector(0,0);
-    velocity = new PVector(random(-100,100),random(-100,100));
+    velocity = new PVector(random(-temp,temp),random(-temp,temp));
     force = new PVector(0, 0);
     accel = new PVector(0, 0);
     mass = 1;
@@ -136,8 +137,8 @@ class Asteroid
       */
       
       float scalarForce = 
-      (  ((this.mass)*(p.mass)) * pow(10,3.8))  
-      /sq( dist );
+      (  ((this.mass)*(p.mass)) * pow(10,12))  
+      /sq( dist * pow(10,4));
       
       //float scalarForce = 50;
       //5.972 × 10^24 kg

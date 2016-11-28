@@ -23,7 +23,22 @@ void keyPressed()
   }//end if
 }//end keyPressed
 
+boolean held = false;
+//void mousePressed()
 void mousePressed()
 {
-  userAsteroid(mouseX-width*0.5, mouseY-height*0.5);
+  held = true;
 }//end mouseclicked
+
+void mouseClicked()
+{
+  held = false;
+}//end mouseclicked
+
+void generate()
+{
+  if(held)
+  {
+    userAsteroid(mouseX-width*0.5, mouseY-height*0.5);
+  }
+}//end 
