@@ -143,7 +143,8 @@ vectors[0].z = 7;
     popMatrix();
     
     fill(0,255,255);
-    noStroke();
+    //noStroke();
+    stroke(0);
     //trail();
   }//end render
   

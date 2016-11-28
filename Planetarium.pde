@@ -39,7 +39,7 @@ void setup()
   easter = false;
   menuSelect = 0;
   
-  
+  FMB = new FreeModeButton();
   
   
 }
@@ -75,6 +75,8 @@ float timeDelta = 1.0f / 60.0f;
 
 boolean easter;
 int menuSelect;
+
+FreeModeButton FMB;
 
 void newPlanet(String name,float size,color c,float mass)
 {
@@ -199,6 +201,8 @@ void draw()
   {
     case 0:
     {
+      FMB.render();
+      //FMB.render();
       
       break;
     }//end case 0

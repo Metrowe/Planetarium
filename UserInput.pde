@@ -33,7 +33,7 @@ void mousePressed()
   {
     case 0:
     {
-      
+      FMB.ifClicked();
       break;
     }//end case 0
     case 1:
