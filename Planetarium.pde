@@ -35,8 +35,8 @@ void setup()
   }//end for
   
   //asteroids[0] = new Asteroid();
-  asteroid = new Asteroid();
-  player = new Player(width / 2, height / 2, 0, 50);
+  //asteroid = new Asteroid();
+  
   
   
   
@@ -45,13 +45,14 @@ void setup()
   
 }
 
-Player player;
-Asteroid asteroid;
+
+//Asteroid asteroid;
 
 int numstars = 600;
 int numplanets = 4;
 //Planet[] planets = new Planet[numplanets];
 ArrayList<Planet> planets = new ArrayList<Planet>();
+ArrayList<Asteroid> asteroids = new ArrayList<Asteroid>();
 Star[] stars = new Star[numstars];
 //Asteroid[] asteroids = new Asteroid[10];
 int p;
@@ -78,6 +79,18 @@ void newPlanet(String name,float size,color c,float mass)
 {
   Planet local = new Planet(name,size,c,mass);
   planets.add(local);
+}//end addPlanet
+
+void newAsteroid()
+{
+  Asteroid local = new Asteroid();
+  asteroids.add(local);
+}//end addPlanet
+
+void userAsteroid(float a, float b)
+{
+  Asteroid local = new Asteroid(a,b);
+  asteroids.add(local);
 }//end addPlanet
 
 
@@ -109,6 +122,23 @@ void rock()
   }//end for
 }//end rock
 
+void smallRock()
+{
+  for (int i = asteroids.size() - 1; i > -1; i--) 
+  {
+    Asteroid tempAsteroid = asteroids.get(i);
+    if (tempAsteroid.done) 
+    {
+      asteroids.remove(i);
+    }
+    else
+    {
+      tempAsteroid.update();
+      tempAsteroid.render();
+    }//end else
+  }
+}//end rock
+
 
 void ring()
 {
@@ -138,8 +168,12 @@ void draw()
   rock();
   popMatrix();
   
-  asteroid.update();
-  asteroid.render();
+  
+  smallRock();
+  
+  
+  //asteroid.update();
+  //asteroid.render();
   
   popMatrix();
   
@@ -148,8 +182,6 @@ void draw()
   //asteroid.update();
   //asteroid.render();
   
-  player.update();
-  player.render();
   
   //println(scale);
   

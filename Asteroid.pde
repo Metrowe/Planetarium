@@ -4,6 +4,7 @@ class Asteroid
   float size;
   color c;
   float mass;
+  boolean done;
   PShape shape, base;
   PVector pos;
   PVector velocity;
@@ -23,7 +24,6 @@ class Asteroid
   Asteroid()
   {
     this.size = proportion * 0.005;
-    println(scale);
     this.c = color(255,100,50);
     //pos = new PVector(-width*0.5, 0);
     //pos = new PVector(-width*0.5, 200);
@@ -34,6 +34,26 @@ class Asteroid
     force = new PVector(0, 0);
     accel = new PVector(0, 0);
     mass = 1;
+    done = false;
+    //mass = 500000;
+    
+    create();
+  }//end Planet
+  
+  Asteroid(float a, float b)
+  {
+    this.size = proportion * 0.005;
+    this.c = color(255,100,50);
+    //pos = new PVector(-width*0.5, 0);
+    //pos = new PVector(-width*0.5, 200);
+    pos = new PVector(a,b);
+    //pos = new PVector(-width*0.5,-200);
+    //velocity = new PVector(0,0);
+    velocity = new PVector(random(-100,100),random(-100,100));
+    force = new PVector(0, 0);
+    accel = new PVector(0, 0);
+    mass = 1;
+    done = false;
     //mass = 500000;
     
     create();
@@ -109,9 +129,20 @@ class Asteroid
     if(dist > p.size + size)
     {
       //float scalarForce = (  (6.674 * pow(10,-3) )*(asteroid.mass)*(p.mass))  /sq( dist );
-      float scalarForce = (  (6.674 * pow(10,3) )*(asteroid.mass)*(p.mass))  /sq( dist );
-      //float scalarForce = 50;
+      /*
+      float scalarForce = 
+      (  (6.674 * pow(10,-11) )*((asteroid.mass)*(p.mass)) * pow(10,18))  
+      /sq( dist * pow(10,2) );
+      */
       
+      float scalarForce = 
+      (  ((this.mass)*(p.mass)) * pow(10,3.8))  
+      /sq( dist );
+      
+      //float scalarForce = 50;
+      //5.972 × 10^24 kg
+      //6,371km
+      //6.38 × 10^6 m
       PVector direction = new PVector(sin(theta), -cos(theta));
       /*
       forward.x = sin(theta);
@@ -120,6 +151,10 @@ class Asteroid
   
       force.add(PVector.mult(direction, scalarForce));
     }//end if
+    else
+    {
+      done = true;
+    }//end else
     //float angle = PVector.angleBetween(pos, xy);
     //PVector temp = new PVector(0, 0);
     

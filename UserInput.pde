@@ -25,6 +25,5 @@ void keyPressed()
 
 void mousePressed()
 {
-  asteroid.pos.x = mouseX-width*0.5;
-  asteroid.pos.y = mouseY-height*0.5;
+  userAsteroid(mouseX-width*0.5, mouseY-height*0.5);
 }//end mouseclicked
