@@ -34,6 +34,7 @@ void mousePressed()
     case 0:
     {
       FMB.ifClicked();
+      IB.ifClicked();
       break;
     }//end case 0
     case 1:

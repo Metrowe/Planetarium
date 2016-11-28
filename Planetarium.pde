@@ -77,6 +77,9 @@ boolean easter;
 int menuSelect;
 
 FreeModeButton FMB;
+InfoButton IB;
+BackButton BB;
+EasterButton EB;
 
 void newPlanet(String name,float size,color c,float mass)
 {
@@ -201,7 +204,9 @@ void draw()
   {
     case 0:
     {
+      displayStart();
       FMB.render();
+      IB.render();
       //FMB.render();
       
       break;
