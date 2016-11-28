@@ -28,6 +28,25 @@ boolean held = false;
 void mousePressed()
 {
   held = true;
+  
+  switch(menuSelect)
+  {
+    case 0:
+    {
+      
+      break;
+    }//end case 0
+    case 1:
+    {
+
+      break;
+    }//end case 1
+    case 2:
+    {
+   
+      break;
+    }//end case 2
+  }//end switch
 }//end mouseclicked
 
 void mouseClicked()

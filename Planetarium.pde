@@ -5,7 +5,6 @@ This is the real file
 void setup()
 {
   size(700,700);
-  //fullScreen();
   theta = 0;
   thetaS = 0;
   proportion = ( (height+width)/2 );
