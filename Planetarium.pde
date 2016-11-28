@@ -37,8 +37,8 @@ void setup()
   //asteroids[0] = new Asteroid();
   //asteroid = new Asteroid();
   
-  
-  
+  easter = false;
+  menuSelect = 0;
   
   
   
@@ -74,7 +74,8 @@ boolean ready;
 
 float timeDelta = 1.0f / 60.0f;
 
-
+boolean easter;
+int menuSelect;
 
 void newPlanet(String name,float size,color c,float mass)
 {
@@ -184,12 +185,65 @@ void ring()
 
 void draw()
 {
+  stroke(0);
+  fill(0);
   
   //switch(
-  background(0);
+  if(easter == false)
+  {
+    background(0);
+  }//end if
   
   scale(scale);
   
+  switch(menuSelect)
+  {
+    case 0:
+    {
+      
+      break;
+    }//end case 0
+    case 1:
+    {
+      light();
+      ring();
+
+      pushMatrix();
+      translate(X, Y);
+      rotation();
+      rock();
+      popMatrix();
+ 
+      break;
+    }//end case 1
+    case 2:
+    {
+      scale(scale);
+      light();
+      ring();
+      
+      pushMatrix();
+      translate(X, Y);
+      
+      pushMatrix();
+      rotation();
+      rock();
+      popMatrix();
+      
+      smallRock();
+      frag();
+      popMatrix();
+
+      generate();
+      if(frameCount % 30 == 0)
+      {
+        newAsteroid();
+      }//end if     
+      break;
+    }//end case 2
+  }//end switch
+
+  /*
   light();
   ring();
   
@@ -214,9 +268,6 @@ void draw()
   
   popMatrix();
   
-  stroke(0);
-  fill(0);
-  
   //asteroid.update();
   //asteroid.render();
   
@@ -229,4 +280,5 @@ void draw()
   {
     newAsteroid();
   }//end if
+  */
 }//end draw
