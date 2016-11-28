@@ -40,8 +40,8 @@ void setup()
   menuSelect = 0;
   
   FMB = new FreeModeButton();
-  
-  
+  IB = new InfoButton();
+  BB = new BackButton();
 }
 
 
@@ -198,7 +198,7 @@ void draw()
     background(0);
   }//end if
   
-  scale(scale);
+  //scale(scale);
   
   switch(menuSelect)
   {
@@ -213,6 +213,28 @@ void draw()
     }//end case 0
     case 1:
     {
+      
+      ///////////////////////////////////////////
+     pushMatrix();////////
+     scale(scale);
+     
+     light();
+     ring();
+     
+     pushMatrix();
+     translate(X, Y);   
+       pushMatrix();
+       rotation();
+       rock();
+       popMatrix();
+     //smallRock();
+     //frag();
+     popMatrix();
+     popMatrix();///////////////
+      /////////////////////////////////////////////
+      /*
+      pushMatrix();
+      scale(scale);
       light();
       ring();
 
@@ -221,12 +243,20 @@ void draw()
       rotation();
       rock();
       popMatrix();
- 
+      popMatrix();
+      */
+      BB.render();
       break;
     }//end case 1
     case 2:
     {
-      scale(scale);
+      
+      generate();
+      if(frameCount % 30 == 0)
+      {
+        newAsteroid();
+      }//end if  
+      
       light();
       ring();
       
@@ -242,11 +272,10 @@ void draw()
       frag();
       popMatrix();
 
-      generate();
-      if(frameCount % 30 == 0)
-      {
-        newAsteroid();
-      }//end if     
+       
+
+      
+      BB.render();
       break;
     }//end case 2
   }//end switch

@@ -51,6 +51,17 @@ void rotation()
   {
     case 0:
     {
+      thetaS += radians(spin);
+      if(thetaS > TWO_PI)
+      {
+        thetaS = thetaS % TWO_PI;
+      }//end if
+      rotate(thetaS);
+      break;
+    }//end case 0
+    
+    case 1:
+    {
       if(travel == 0)
       {
         ready = true;
@@ -63,17 +74,8 @@ void rotation()
         travel--;
       }//end else
       break;
-    }//end case 0
+    }//end case 1
     
-    case 1:
-    {
-      thetaS += radians(spin);
-      if(thetaS > TWO_PI)
-      {
-        thetaS = thetaS % TWO_PI;
-      }//end if
-      rotate(thetaS);
-      break;
-    }//end case 0
+    
   }//end switch
 }//end rotation

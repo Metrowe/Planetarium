@@ -39,12 +39,12 @@ void mousePressed()
     }//end case 0
     case 1:
     {
-
+      BB.ifClicked();
       break;
     }//end case 1
     case 2:
     {
-   
+      BB.ifClicked();
       break;
     }//end case 2
   }//end switch

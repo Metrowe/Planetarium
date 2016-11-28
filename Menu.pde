@@ -22,19 +22,10 @@ class Button
       t = (c);
     }//end else
   }//end hover
-  /*
-  void ifClicked()
-  {
-    if(mouseX > pos.x && mouseX < pos.x+area.x && mouseY > pos.y && mouseY < pos.y+area.y)
-    {
-      fill(c);
-      stroke(200,200,50);
-    }
-  }//end ifClicked
-  */
+
   void render()
   {
-    stroke(200,200,50);
+    stroke(c);
     hover();
     rect(pos.x,pos.y,  area.x,area.y);
     extra();
@@ -63,6 +54,9 @@ class FreeModeButton extends Button
     if(mouseX > pos.x && mouseX < pos.x+area.x && mouseY > pos.y && mouseY < pos.y+area.y)
     {
       menuSelect = 2;
+      motion = 0;
+      view = 0;
+      switchView();
     }
   }//end ifClicked
   
@@ -80,9 +74,9 @@ class InfoButton extends Button
   InfoButton()
   {
     label = "Info Mode";
-    pos = new PVector(width*0.5,height*0.5);
+    pos = new PVector(width*0.35,height*0.5);
     area = new PVector(width*0.1,height*0.1);
-    c = color(0,255,0);
+    c = color(0,0,255);
   }//end FreeModeButton
   
   void ifClicked()
@@ -90,6 +84,9 @@ class InfoButton extends Button
     if(mouseX > pos.x && mouseX < pos.x+area.x && mouseY > pos.y && mouseY < pos.y+area.y)
     {
       menuSelect = 1;
+      motion = 1;
+      view = 1;
+      switchView();
     }
   }//end ifClicked
   
@@ -103,7 +100,28 @@ class InfoButton extends Button
 
 class BackButton extends Button 
 {
+  BackButton()
+  {
+    pos = new PVector(width*0.05,height*0.05);
+    area = new PVector(width*0.05,height*0.05);
+    c = color(255,0,0);
+  }//end FreeModeButton
   
+  void ifClicked()
+  {
+    if(mouseX > pos.x && mouseX < pos.x+area.x && mouseY > pos.y && mouseY < pos.y+area.y)
+    {
+      menuSelect = 0;
+      view = 1;
+      switchView();
+    }
+  }//end ifClicked
+  
+  void extra()
+  {
+    //fill(t);
+    
+  }//end extra
 }
 
 class EasterButton extends Button 
