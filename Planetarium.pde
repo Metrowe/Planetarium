@@ -108,6 +108,7 @@ void light()
 {
   strokeWeight(2);
   pushMatrix();
+  //translate(X+random(random(-3,3)),Y+random(-3,3));
   translate(X,Y);
   rotate(thetaB -= 0.0005);
   for(int i = 0;i < stars.length;i++)
@@ -186,6 +187,7 @@ void draw()
   
   //switch(
   background(0);
+  
   scale(scale);
   
   light();

@@ -131,7 +131,7 @@ vectors[0].z = 7;
   void render()
   {
 
-    trail();
+    //trail();
     pushMatrix(); // Stores the current transform
     translate(pos.x, pos.y);
     
@@ -144,7 +144,7 @@ vectors[0].z = 7;
     
     fill(0,255,255);
     noStroke();
-    trail();
+    //trail();
   }//end render
   
   void trail()
