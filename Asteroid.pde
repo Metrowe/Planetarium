@@ -110,6 +110,11 @@ vectors[0].z = 7;
     accel = new PVector(0, 0);
     mass = 1;
     done = false;
+    
+    for(int i = 0;i < trailPos.length;i++)
+    {
+      trailPos[i] = new PVector(pos.x,pos.y);
+    }//end for
     //mass = 500000;
     
     create();
@@ -125,24 +130,70 @@ vectors[0].z = 7;
  
   void render()
   {
+
+    trail();
     pushMatrix(); // Stores the current transform
     translate(pos.x, pos.y);
+    
+    //trail();
     //translate(0, 0);
     //rotate(theta); 
     //shape(shape,pos.x,pos.y);
     shape(shape);
     popMatrix();
+    
+    fill(0,255,255);
+    noStroke();
+    trail();
   }//end render
   
   void trail()
   {
-    pushMatrix(); // Stores the current transform
-    translate(pos.x, pos.y);
-    //translate(0, 0);
-    //rotate(theta); 
-    //shape(shape,pos.x,pos.y);
-    shape(shape);
-    popMatrix();
+    int i = (current+1)%9;
+    float trailSize = size; 
+    while(i != current)
+    {
+      trailSize = trailSize - 0.2;
+      
+      //line(trailPos[i].x, trailPos[i].y,      trailPos[(i+1)%9].x, trailPos[(i+1)%10].x);
+      //shape(shape,trailPos[i].x,trailPos[i].y);
+      ellipse(trailPos[i].x,trailPos[i].y, trailSize,trailSize);
+      i = (i+1)%10;
+    }//end while
+    //trailPos[current].x
+    
+    trailPos[i].x = pos.x;
+    trailPos[i].y = pos.y;
+    
+    current = (current+1)%10;
+    /*
+    int i = trailMod(current+1);
+    while(i != current)
+    {
+      stroke(255,0,255);
+      strokeWeight(5);
+      line(trailPos[i].x, trailPos[i].y,      trailPos[trailMod(i+1)].x, trailPos[trailMod(i+1)].x);
+      i++;
+      i = trailMod(i);
+    }//end while
+    //trailPos[current].x
+    trailPos[i].x = pos.x;
+    trailPos[i].y = pos.y;
+    current++;
+    current = trailMod(current);
+    */
+  }//end render
+  
+  int trailMod(int a)
+  {
+    if(a > 9)
+    {
+      return (a % 9);
+    }//end if
+    else
+    {
+      return a;
+    }
   }//end render
   
   void update()
