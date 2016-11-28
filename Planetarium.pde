@@ -42,6 +42,7 @@ void setup()
   FMB = new FreeModeButton();
   IB = new InfoButton();
   BB = new BackButton();
+  EB = new EasterButton();
 }
 
 
@@ -181,6 +182,7 @@ void frag()
 
 void ring()
 {
+  ellipseMode(RADIUS);
   noFill();
   stroke(255);
   strokeWeight(2);
@@ -276,6 +278,7 @@ void draw()
 
       
       BB.render();
+      EB.render();
       break;
     }//end case 2
   }//end switch

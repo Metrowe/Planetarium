@@ -130,7 +130,7 @@ vectors[0].z = 7;
  
   void render()
   {
-
+    //ellipseMode(RADIUS);
     //trail();
     pushMatrix(); // Stores the current transform
     translate(pos.x, pos.y);

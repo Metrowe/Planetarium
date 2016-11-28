@@ -1,5 +1,6 @@
 void keyPressed()
 {
+  /*
   if(keyCode == UP)
   {
     view = (view + 1) % 2;
@@ -11,6 +12,7 @@ void keyPressed()
     motion = (motion + 1) % 2;
     switchView();
   }//end if
+  */
   
   if(keyCode == LEFT && motion == 0 && ready)
   {
@@ -45,6 +47,7 @@ void mousePressed()
     case 2:
     {
       BB.ifClicked();
+      EB.ifClicked();
       break;
     }//end case 2
   }//end switch

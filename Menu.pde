@@ -111,6 +111,7 @@ class BackButton extends Button
   {
     if(mouseX > pos.x && mouseX < pos.x+area.x && mouseY > pos.y && mouseY < pos.y+area.y)
     {
+      easter = false;
       menuSelect = 0;
       view = 1;
       switchView();
@@ -126,12 +127,27 @@ class BackButton extends Button
 
 class EasterButton extends Button 
 {
+  EasterButton()
+  {
+    pos = new PVector(width*0.97,height*0.95);
+    area = new PVector(width*0.03,height*0.05);
+    //c = color(252,142,172);
+    c = color(20);
+  }//end FreeModeButton
+  
   void render()
   {
     ellipseMode(CORNER);
     hover();
+    stroke(c);
     ellipse(pos.x,pos.y,  area.x,area.y);
   }//end render
   
-  
+  void ifClicked()
+  {
+    if(mouseX > pos.x && mouseX < pos.x+area.x && mouseY > pos.y && mouseY < pos.y+area.y)
+    {
+      easter = !easter;
+    }
+  }//end ifClicked
 }

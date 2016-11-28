@@ -35,6 +35,7 @@ class Planet
  
   void render()
   {
+    //ellipseMode(RADIUS);
     shape(shape);
   }//end render
   
