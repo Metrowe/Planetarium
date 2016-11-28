@@ -200,6 +200,8 @@ void draw()
   smallRock();
   frag();
   
+  
+  
   //asteroid.update();
   //asteroid.render();
   
@@ -216,4 +218,8 @@ void draw()
   ////////////////////////////////////
   //test function
   generate();
+  if(frameCount % 30 == 0)
+  {
+    newAsteroid();
+  }//end if
 }//end draw

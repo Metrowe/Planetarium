@@ -24,13 +24,41 @@ class Asteroid
   Asteroid()
   {
     this.size = proportion * 0.005;
-    this.c = color(255,100,50);
-    //pos = new PVector(-width*0.5, 0);
-    //pos = new PVector(-width*0.5, 200);
-    pos = new PVector(-width*0.5,random(-350,0));
-    //pos = new PVector(-width*0.5,-200);
-    //velocity = new PVector(0,0);
-    velocity = new PVector(120,0);
+    this.c = color(0,255,255);
+    int side = int(random(1,4));
+    switch(side)
+    {
+      case 1:
+      {
+        pos = new PVector(-width*0.5,random(-height*0.5,height*0.5));
+        velocity = new PVector(random(0,200),0);
+        break;
+      }//end case 1
+      case 2:
+      {
+        pos = new PVector(random(-width*0.5,width*0.5),-height*0.5);
+        velocity = new PVector(0,random(0,200));
+        break;
+      }//end case 2
+      case 3:
+      {
+        pos = new PVector(width*0.5,random(-height*0.5,height*0.5));
+        velocity = new PVector(random(0,-200),0);
+        break;
+      }//end case 3
+      case 4:
+      {
+        pos = new PVector(random(-width*0.5,width*0.5),height*0.5);
+        velocity = new PVector(0,random(0,-200));
+        break;
+      }//end case 4
+      default:
+      {
+        println("DEFAULT");
+      }
+    }//end switch
+    
+
     force = new PVector(0, 0);
     accel = new PVector(0, 0);
     mass = 1;

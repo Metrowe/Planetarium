@@ -10,15 +10,6 @@ class Fragment
   PVector pos;
   PVector velocity;
   
-  /*
-  Asteroid( String name,float size,color c  )
-  {
-    this.name = name;
-    this.size = size;
-    this.c = c;
-  }//end Planet
-  */
-  
   Fragment(float a, float b)
   {
     size = proportion * 0.003;
