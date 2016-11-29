@@ -1,6 +1,10 @@
 void displayStart()
 {
-  
+  textAlign(CENTER,CENTER);
+  textSize(proportion * 0.1);
+  fill(255);
+  text("PLANETARIUM",width*0.5,height*0.3);
+  textSize(proportion * 0.018);
 }//end displayStart
 
 class Button
@@ -63,7 +67,9 @@ class FreeModeButton extends Button
   void extra()
   {
     fill(t);
+    //textAlign(LEFT,TOP);
     textAlign(CENTER,CENTER);
+    //textSize(1);
     text(label,pos.x+area.x*0.5,pos.y+area.y*0.5);
   }//end extra
 }//end class FreeModeButton
@@ -121,6 +127,10 @@ class BackButton extends Button
   void extra()
   {
     //fill(t);
+    stroke(t);
+    line(pos.x+area.x*0.1,pos.y+area.y*0.5,  pos.x+area.x*0.9,pos.y+area.y*0.5);
+    line(pos.x+area.x*0.1,pos.y+area.y*0.5,  pos.x+area.x*0.2,pos.y+area.y*0.3);
+    line(pos.x+area.x*0.1,pos.y+area.y*0.5,  pos.x+area.x*0.2,pos.y+area.y*0.7);
     
   }//end extra
 }

@@ -14,14 +14,26 @@ void keyPressed()
   }//end if
   */
   
-  if(keyCode == LEFT && motion == 0 && ready)
+  if(keyCode == LEFT && motion == 1 && ready)
   {
     startRotate('l');
+    select++;
+    
+    if(select == planets.size())
+    {
+      select = 0;
+    }
   }//end if
   
-  if(keyCode == RIGHT && motion == 0 && ready)
+  if(keyCode == RIGHT && motion == 1 && ready)
   {
     startRotate('r');
+    select--;
+    
+    if(select == -1)
+    {
+      select = planets.size() - 1;
+    }
   }//end if
 }//end keyPressed
 

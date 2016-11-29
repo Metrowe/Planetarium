@@ -1,5 +1,14 @@
 /*
-This is the real file
+Author: Emmet Rowe
+Date: 29/11/16
+OS: Windows 7
+Notes:
+-I'm aware that Pluto is no longer classified as a planet but I took some 'artistic liberties' with this project.
+-The Info Mode is based off the mission select hud in a game called warframe so that is why all planets are placed on the same axis.
+-Major adjustments were made to planet values and certain formula to get desired interaction.
+-I'm bad at naming variables..... sorry.
+
+References: The material for the planet descriptions was sourced from http://www.theplanetstoday.com/the_planets.html 
 */
 
 void setup()
@@ -12,11 +21,11 @@ void setup()
   //println(proportion);
   p = 0;
   //newPlanet("Mars",0.04,color(255,0,0));
-  newPlanet("Mars",0.04,color(255,0,0),400);
-  newPlanet("Pluto",0.01,color(0,0,255),100);
-  newPlanet("Venus",0.05,color(200,0,200),500);
-  newPlanet("Neptune",0.03,color(0,255,0),300);
-  newPlanet("Saturn",0.035,color(200,200,0),350);
+  newPlanet("Mars",0.04,color(255,0,0),400,"Mars is the fourth closest planet to the Sun. Mars takes about \n686 Earth days to orbit the Sun. Mars is about half the size of \nthe Earth with a diameter of 6,792km. However its mass is only \na tenth of Earth’s with gravity on the surface being around 37% \nthat of Earth’s.");
+  newPlanet("Pluto",0.01,color(0,0,255),100,"");
+  newPlanet("Venus",0.05,color(200,0,200),500,"");
+  newPlanet("Neptune",0.03,color(0,255,0),300,"");
+  newPlanet("Saturn",0.035,color(200,200,0),350,"");
   
   spin = 0.2;
   travel = 0;
@@ -76,15 +85,29 @@ float timeDelta = 1.0f / 60.0f;
 
 boolean easter;
 int menuSelect;
+int select;
 
 FreeModeButton FMB;
 InfoButton IB;
 BackButton BB;
 EasterButton EB;
 
-void newPlanet(String name,float size,color c,float mass)
+void loadData()
 {
-  Planet local = new Planet(name,size,c,mass);
+  Table t = loadTable("planetData.csv");
+  
+  for(int i = 0 ; i < t.getRowCount(); i ++)
+  {
+    TableRow row = t.getRow(i);
+    Planet local = new Planet(row);
+    planets.add(local);
+  }//end for
+}//end loaDdata
+
+
+void newPlanet(String name,float size,color c,float mass,String description)
+{
+  Planet local = new Planet(name,size,c,mass,description);
   planets.add(local);
 }//end addPlanet
 
@@ -108,6 +131,8 @@ void newFrags(float a, float b)
     fragments.add(local);
   }
 }//end addPlanet
+
+
 
 
 void light()
@@ -225,14 +250,21 @@ void draw()
      
      pushMatrix();
      translate(X, Y);   
-       pushMatrix();
-       rotation();
-       rock();
-       popMatrix();
+     pushMatrix();
+     rotation();
+     rock();
+     popMatrix();
      //smallRock();
      //frag();
      popMatrix();
-     popMatrix();///////////////
+     popMatrix();
+     
+     if(ready)
+     {
+       Planet tempPlanet = planets.get(select);
+       tempPlanet.displayInfo();
+     }//end if
+     ///////////////
       /////////////////////////////////////////////
       /*
       pushMatrix();
