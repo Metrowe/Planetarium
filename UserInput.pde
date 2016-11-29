@@ -56,7 +56,7 @@ void mouseClicked()
 
 void generate()
 {
-  if(held)
+  if(held && asteroids.size() < 100)
   {
     userAsteroid(mouseX-width*0.5, mouseY-height*0.5);
   }//end if

@@ -18,14 +18,8 @@ void setup()
   thetaS = 0;
   proportion = ( (height+width)/2 );
   rad = proportion * 0.35;
-  
-  newPlanet("Mars",0.04,color(255,0,0),400,"Mars is the fourth closest planet to the Sun. Mars takes about \n686 Earth days to orbit the Sun. Mars is about half the size of \nthe Earth with a diameter of 6,792km. However its mass is only \na tenth of Earth’s with gravity on the surface being around 37% \nthat of Earth’s.");
-  newPlanet("Pluto",0.01,color(0,0,255),100,"Pluto is the second largest dwarf planet after Ceres, and is \nabout 1/6 the mass of the Moon. It has an diameter of 2370km \nand is made of rock and ice with a thin atmosphere of nitrogen, \nmethane and carbon monoxide. It has a temperature of around \n-230 degrees C.");
-  newPlanet("Venus",0.05,color(200,0,200),500,"Venus is the second closest planet to the Sun and orbits in an \nalmost circular orbit at 108 million km. As it orbits, Venus \ncomes closer to Earth than any other planet in the solar system \nand can come to within about 40 million km.");
-  newPlanet("Neptune",0.03,color(0,255,0),300,"Neptune is the eighth closest planet to the Sun and is (since the \nrelegation of Pluto) the last Planet in the Solar System. It is \nsimilar in size and composition to Uranus with a diameter of \n49,000km and a mass of over 17 times that of Earth.");
-  newPlanet("Saturn",0.035,color(200,200,0),350,"Saturn is the sixth closest planet to the Sun. It is the second \nlargest planet in the solar system having a radius 9 times that \nof Earth (57,000 km) and a mass 95 times that of Earth. Saturn \norbits the Sun once very 29 years (at about 1400 million km) \nand is mainly comprised of gas (96% hydrogen and 3% helium). ");
-  
-  //loadData();
+
+  loadData();
   spin = 0.2;
   travel = 0;
   
@@ -50,7 +44,7 @@ void setup()
   EB = new EasterButton();
 }//end setup
 
-int numstars = 600;
+int numstars = 400;
 
 ArrayList<Planet> planets = new ArrayList<Planet>();
 ArrayList<Asteroid> asteroids = new ArrayList<Asteroid>();
@@ -97,12 +91,6 @@ void loadData()
     planets.add(local);
   }//end for
 }//end loadData
-
-void newPlanet(String name,float size,color c,float mass,String description)
-{
-  Planet local = new Planet(name,size,c,mass,description);
-  planets.add(local);
-}//end addPlanet
 
 void newAsteroid()
 {
@@ -235,6 +223,11 @@ void draw()
         tempPlanet.displayInfo();
       }//end if
     
+      textAlign(CENTER,CENTER);
+      textSize(proportion * 0.015);
+      fill(255);
+      text("Use left and right arrow keys to select different planets",width*0.5,height*0.95);
+      
       BB.render();
       break;
     }//end case 1
@@ -260,6 +253,11 @@ void draw()
       smallRock();
       frag();
       popMatrix();
+      
+      textAlign(CENTER,CENTER);
+      textSize(proportion * 0.015);
+      fill(255);
+      text("Click and hold to create asteroids",width*0.5,height*0.95);
       
       BB.render();
       EB.render();

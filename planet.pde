@@ -1,29 +1,17 @@
 class Planet
 {
   String name;
-  String description;
+  String description1;
+  String description2;
+  String description3;
+  String description4;
+  String description5;
   float size;
   float mass;
   float space;
   color c;
   PVector locate;
   PShape shape;
-
-  Planet()
-  {
-    name = "Add name";
-    size = random(0.1,0.5);  c = color(random(255),random(255),random(255));
-  }//end Planet
-  
-  Planet( String name,float size,color c,float mass,String description  )
-  {
-    this.name = name;
-    this.size = size * proportion;
-    this.mass = mass;
-    this.c = c;
-    this.description = description;
-    locate = new PVector(0, 0);
-  }//end Planet
   
   Planet(TableRow row)
   {
@@ -31,7 +19,11 @@ class Planet
     size = row.getFloat(1) * proportion;
     mass = row.getFloat(2);
     c = color(row.getFloat(3),row.getFloat(4),row.getFloat(5));
-    description = row.getString(6);
+    description1 = row.getString(6);
+    description2 = row.getString(7);
+    description3 = row.getString(8);
+    description4 = row.getString(9);
+    description5 = row.getString(10);
     locate = new PVector(0, 0);
   }//end Planet
   
@@ -60,7 +52,12 @@ class Planet
     textAlign(LEFT,TOP);
     textSize(proportion * 0.03);
     fill(255);
-    text(description,width*0.05,height*0.45);
+    text(description1+"\n"
+    +description2+"\n"
+    +description3+"\n"
+    +description4+"\n"
+    +description5+"\n"
+    ,width*0.05,height*0.45);
   }//end displayInfo
   
   void update()
