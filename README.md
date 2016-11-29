@@ -11,6 +11,6 @@ By clicking and holding clusters of asteroids are generated from the mouse point
 There is an easter egg button in the bottom right corner that toggles an interesting visual mode.
 
 # Highlights
-*The calculations for force on the asteroids in relation to the planets took a lot of tweaking and I'm quite happy with the resulting physics interactions such as the slingshot effect.
-*The inheritence and polymorphism for the button classes really streamlined menu navigation.
-*The order of translates, scaling, rotation, push and popmatrices in draw required fine tuning to get the desired displays.
+* The calculations for force on the asteroids in relation to the planets took a lot of tweaking and I'm quite happy with the resulting physics interactions such as the slingshot effect.
+* The inheritence and polymorphism for the button classes really streamlined menu navigation.
+* The order of translates, scaling, rotation, push and popmatrices in draw required fine tuning to get the desired displays.
