@@ -37,7 +37,7 @@ class Button
   
   void extra()
   {
-
+    //Here so it can be more easily referenced using render
   }//end extra
 }//end class Button
 
@@ -67,9 +67,7 @@ class FreeModeButton extends Button
   void extra()
   {
     fill(t);
-    //textAlign(LEFT,TOP);
     textAlign(CENTER,CENTER);
-    //textSize(1);
     text(label,pos.x+area.x*0.5,pos.y+area.y*0.5);
   }//end extra
 }//end class FreeModeButton
@@ -83,7 +81,7 @@ class InfoButton extends Button
     pos = new PVector(width*0.35,height*0.5);
     area = new PVector(width*0.1,height*0.1);
     c = color(0,0,255);
-  }//end FreeModeButton
+  }//end InfoButton
   
   void ifClicked()
   {
@@ -111,7 +109,7 @@ class BackButton extends Button
     pos = new PVector(width*0.05,height*0.05);
     area = new PVector(width*0.05,height*0.05);
     c = color(255,0,0);
-  }//end FreeModeButton
+  }//end BackButton
   
   void ifClicked()
   {
@@ -121,19 +119,17 @@ class BackButton extends Button
       menuSelect = 0;
       view = 1;
       switchView();
-    }
+    }//end if
   }//end ifClicked
   
   void extra()
   {
-    //fill(t);
     stroke(t);
     line(pos.x+area.x*0.1,pos.y+area.y*0.5,  pos.x+area.x*0.9,pos.y+area.y*0.5);
     line(pos.x+area.x*0.1,pos.y+area.y*0.5,  pos.x+area.x*0.2,pos.y+area.y*0.3);
     line(pos.x+area.x*0.1,pos.y+area.y*0.5,  pos.x+area.x*0.2,pos.y+area.y*0.7);
-    
   }//end extra
-}
+}//end class BackButton
 
 class EasterButton extends Button 
 {
@@ -141,9 +137,8 @@ class EasterButton extends Button
   {
     pos = new PVector(width*0.97,height*0.95);
     area = new PVector(width*0.03,height*0.05);
-    //c = color(252,142,172);
     c = color(20);
-  }//end FreeModeButton
+  }//end EasterButton
   
   void render()
   {
@@ -160,4 +155,4 @@ class EasterButton extends Button
       easter = !easter;
     }
   }//end ifClicked
-}
+}//end class EasterButton

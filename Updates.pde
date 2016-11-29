@@ -75,7 +75,5 @@ void rotation()
       }//end else
       break;
     }//end case 1
-    
-    
   }//end switch
 }//end rotation

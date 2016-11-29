@@ -7,7 +7,7 @@ class Planet
   float space;
   color c;
   PVector locate;
-  PShape shape, base;
+  PShape shape;
 
   Planet()
   {
@@ -33,16 +33,15 @@ class Planet
     c = color(row.getFloat(3),row.getFloat(4),row.getFloat(5));
     description = row.getString(6);
     locate = new PVector(0, 0);
-  }//end GDP
+  }//end Planet
   
   void create(float ang)
   {
     shape = createShape(GROUP);
     ellipseMode(RADIUS);
-    base = createShape(ELLIPSE,  sin(ang) * rad,cos(ang) * rad,  size,size);
-    base.setStrokeWeight(0);
-    base.setFill(c);
-    shape.addChild(base);
+    shape = createShape(ELLIPSE,  sin(ang) * rad,cos(ang) * rad,  size,size);
+    shape.setStrokeWeight(0);
+    shape.setFill(c);
   }//end create
  
   void render()
@@ -62,7 +61,7 @@ class Planet
     textSize(proportion * 0.03);
     fill(255);
     text(description,width*0.05,height*0.45);
-  }//end render
+  }//end displayInfo
   
   void update()
   {
@@ -78,5 +77,5 @@ class Planet
     
     locate.x = sin(ang+space) * rad;
     locate.y = -cos(ang+space) * rad;
-  }//end render
+  }//end update
 }//end class Planet

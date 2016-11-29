@@ -1,46 +1,16 @@
-
 class Asteroid
 {
   float size;
   color c;
   float mass;
   boolean done;
-  PShape shape, base;
+  PShape shape;
   PVector pos;
   PVector velocity;
   PVector force;
   PVector accel;
   int current;
-    
-  
-  PVector[] trailPos = new PVector[10];
-  /*
-  trailPos[0] = new PVector();
-  trailPos[0].x = 7;
-  */
-  
-  
-  /*
-  PVector[] vectors = new PVector[];
 
-// Create a vector for array position 0
-vectors[0] = new PVector();
-
-// Modify the PVector at position 0
-vectors[0].x = 9;
-vectors[0].y = 8;
-vectors[0].z = 7; 
-*/
-  
-  /*
-  Asteroid( String name,float size,color c  )
-  {
-    this.name = name;
-    this.size = size;
-    this.c = c;
-  }//end Planet
-  */
-  
   Asteroid()
   {
     this.size = proportion * 0.005;
@@ -77,48 +47,31 @@ vectors[0].z = 7;
       default:
       {
         println("DEFAULT");
-      }
+      }//end default
     }//end switch
     
-    for(int i = 0;i < trailPos.length;i++)
-    {
-      trailPos[i] = new PVector(pos.x,pos.y);
-    }//end for
-    
-    current = 0;
     force = new PVector(0, 0);
     accel = new PVector(0, 0);
     mass = 1;
     done = false;
-    //mass = 500000;
-    
+
     create();
-  }//end Planet
+  }//end Asteroid
   
   Asteroid(float a, float b)
   {
     int temp = 200;
     this.size = proportion * 0.005;
     this.c = color(0,200,200);
-    //pos = new PVector(-width*0.5, 0);
-    //pos = new PVector(-width*0.5, 200);
     pos = new PVector(a,b);
-    //pos = new PVector(-width*0.5,-200);
-    //velocity = new PVector(0,0);
     velocity = new PVector(random(-temp,temp),random(-temp,temp));
     force = new PVector(0, 0);
     accel = new PVector(0, 0);
     mass = 1;
     done = false;
     
-    for(int i = 0;i < trailPos.length;i++)
-    {
-      trailPos[i] = new PVector(pos.x,pos.y);
-    }//end for
-    //mass = 500000;
-    
     create();
-  }//end Planet
+  }//end Asteroid
   
   void create()
   {
@@ -130,92 +83,28 @@ vectors[0].z = 7;
  
   void render()
   {
-    //ellipseMode(RADIUS);
-    //trail();
-    pushMatrix(); // Stores the current transform
+    pushMatrix();
     translate(pos.x, pos.y);
-    
-    //trail();
-    //translate(0, 0);
-    //rotate(theta); 
-    //shape(shape,pos.x,pos.y);
     shape(shape);
     popMatrix();
     
     fill(0,255,255);
-    //noStroke();
     stroke(0);
-    //trail();
-  }//end render
-  
-  void trail()
-  {
-    int i = (current+1)%9;
-    float trailSize = size; 
-    while(i != current)
-    {
-      trailSize = trailSize - 0.2;
-      
-      //line(trailPos[i].x, trailPos[i].y,      trailPos[(i+1)%9].x, trailPos[(i+1)%10].x);
-      //shape(shape,trailPos[i].x,trailPos[i].y);
-      ellipse(trailPos[i].x,trailPos[i].y, trailSize,trailSize);
-      i = (i+1)%10;
-    }//end while
-    //trailPos[current].x
-    
-    trailPos[i].x = pos.x;
-    trailPos[i].y = pos.y;
-    
-    current = (current+1)%10;
-    /*
-    int i = trailMod(current+1);
-    while(i != current)
-    {
-      stroke(255,0,255);
-      strokeWeight(5);
-      line(trailPos[i].x, trailPos[i].y,      trailPos[trailMod(i+1)].x, trailPos[trailMod(i+1)].x);
-      i++;
-      i = trailMod(i);
-    }//end while
-    //trailPos[current].x
-    trailPos[i].x = pos.x;
-    trailPos[i].y = pos.y;
-    current++;
-    current = trailMod(current);
-    */
-  }//end render
-  
-  int trailMod(int a)
-  {
-    if(a > 9)
-    {
-      return (a % 9);
-    }//end if
-    else
-    {
-      return a;
-    }
   }//end render
   
   void update()
   {
-    //calcForce(planets[0]);
     for(int i = 0;i < planets.size();i++)
-    //for(int i = 0;i < 3;i++)
     {
       Planet tempPlanet = planets.get(i);
       calcForce(tempPlanet);
     }//end for
     
-    
     accel = PVector.div(force, mass);
     velocity.add(PVector.mult(accel, timeDelta));
     pos.add(PVector.mult(velocity, timeDelta));
     force.x = force.y = 0;
-    //velocity.mult(0.99f);
-    wrap();
-
-    
+    wrap(); 
   }//end update
   
   void wrap()
@@ -244,79 +133,16 @@ vectors[0].z = 7;
     float theta = atan2(pos.y - p.locate.y, pos.x - p.locate.x)-PI/2;
     float dist = pos.dist(p.locate);
     
-    //float scalarForce = (  (6.674 * pow(10,-11) )*(asteroid.mass)*(p.mass))  /sq( dist );
     if(dist > p.size + size)
     {
-      //float scalarForce = (  (6.674 * pow(10,-3) )*(asteroid.mass)*(p.mass))  /sq( dist );
-      /*
-      float scalarForce = 
-      (  (6.674 * pow(10,-11) )*((asteroid.mass)*(p.mass)) * pow(10,18))  
-      /sq( dist * pow(10,2) );
-      */
-      
-      float scalarForce = 
-      (  ((this.mass)*(p.mass)) * pow(10,12))  
-      /sq( dist * pow(10,4));
-      
-      //float scalarForce = 50;
-      //5.972 × 10^24 kg
-      //6,371km
-      //6.38 × 10^6 m
+      //float scalarForce = (  (6.674 * pow(10,-3) )*(asteroid.mass)*(p.mass))  /sq( dist );     
+      float scalarForce = (  ((this.mass)*(p.mass)) * pow(10,12))  /sq( dist * pow(10,4));
       PVector direction = new PVector(sin(theta), -cos(theta));
-      /*
-      forward.x = sin(theta);
-      forward.y  = -cos(theta);
-  */
-  
       force.add(PVector.mult(direction, scalarForce));
     }//end if
     else
     {
       done = true;
     }//end else
-    //float angle = PVector.angleBetween(pos, xy);
-    //PVector temp = new PVector(0, 0);
-    
-    //temp.x = p.locate.x - pos.x;
-    //temp.x = p.locate.x - pos.x;
-    
-    
-    
-    //float scalarForce = (  (6.674 * pow(10,-11) )*(asteroid.mass)*(p.mass))  /sq( dist );
-    
-    //float scalarForce = (  (6.674  )*(asteroid.mass)*(p.mass))  /sq( dist*2000 );
-
-    
-    //println(scalarForce);
-    //println(degrees(angle));
-    //force.x = sin(angle)*scalarForce;
-    //force.y = -cos(angle)*scalarForce;
-    
-    
-
-    //velocity.add(PVector.mult(accel, timeDelta));
-    /*
-    tan(angle) = o/a;
-    sin(angle) = o/h;
-    cos(angle) = a/h;
-    */
-
   }//end calcForce
-}//end class Planet
-
-/*
-code for future reference
-for (int i = particles.size() - 1; i >= 0; i--) 
-{
-  Particle part = particles.get(i);
-  if (part.finished()) {
-    particles.remove(i);
-  }
-}
-
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-/*
-F = GMm/R2
-force = (6.674*10−11)(asteroid.mass)(planets[i].mass)/sq(dist(asteroid.pos,planets[i].locate));
-*/
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+}//end class Asteroid

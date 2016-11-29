@@ -18,19 +18,17 @@ void setup()
   thetaS = 0;
   proportion = ( (height+width)/2 );
   rad = proportion * 0.35;
-  //println(proportion);
-  p = 0;
-  //newPlanet("Mars",0.04,color(255,0,0));
+  
   newPlanet("Mars",0.04,color(255,0,0),400,"Mars is the fourth closest planet to the Sun. Mars takes about \n686 Earth days to orbit the Sun. Mars is about half the size of \nthe Earth with a diameter of 6,792km. However its mass is only \na tenth of Earth’s with gravity on the surface being around 37% \nthat of Earth’s.");
   newPlanet("Pluto",0.01,color(0,0,255),100,"Pluto is the second largest dwarf planet after Ceres, and is \nabout 1/6 the mass of the Moon. It has an diameter of 2370km \nand is made of rock and ice with a thin atmosphere of nitrogen, \nmethane and carbon monoxide. It has a temperature of around \n-230 degrees C.");
   newPlanet("Venus",0.05,color(200,0,200),500,"Venus is the second closest planet to the Sun and orbits in an \nalmost circular orbit at 108 million km. As it orbits, Venus \ncomes closer to Earth than any other planet in the solar system \nand can come to within about 40 million km.");
   newPlanet("Neptune",0.03,color(0,255,0),300,"Neptune is the eighth closest planet to the Sun and is (since the \nrelegation of Pluto) the last Planet in the Solar System. It is \nsimilar in size and composition to Uranus with a diameter of \n49,000km and a mass of over 17 times that of Earth.");
   newPlanet("Saturn",0.035,color(200,200,0),350,"Saturn is the sixth closest planet to the Sun. It is the second \nlargest planet in the solar system having a radius 9 times that \nof Earth (57,000 km) and a mass 95 times that of Earth. Saturn \norbits the Sun once very 29 years (at about 1400 million km) \nand is mainly comprised of gas (96% hydrogen and 3% helium). ");
   
+  //loadData();
   spin = 0.2;
   travel = 0;
   
-  motion = 0;
   view = 0;
   switchView();
   
@@ -42,29 +40,24 @@ void setup()
     stars[i] = new Star();
   }//end for
   
-  //asteroids[0] = new Asteroid();
-  //asteroid = new Asteroid();
-  
   easter = false;
   menuSelect = 0;
+  held = false;
   
   FMB = new FreeModeButton();
   IB = new InfoButton();
   BB = new BackButton();
   EB = new EasterButton();
-}
-
-
-//Asteroid asteroid;
+}//end setup
 
 int numstars = 600;
-int numplanets = 4;
-//Planet[] planets = new Planet[numplanets];
+
 ArrayList<Planet> planets = new ArrayList<Planet>();
 ArrayList<Asteroid> asteroids = new ArrayList<Asteroid>();
 ArrayList<Fragment> fragments = new ArrayList<Fragment>();
+
 Star[] stars = new Star[numstars];
-//Asteroid[] asteroids = new Asteroid[10];
+
 int p;
 float theta, thetaS, thetaB;
 float gap;
@@ -86,6 +79,7 @@ float timeDelta = 1.0f / 60.0f;
 boolean easter;
 int menuSelect;
 int select;
+boolean held;
 
 FreeModeButton FMB;
 InfoButton IB;
@@ -102,8 +96,7 @@ void loadData()
     Planet local = new Planet(row);
     planets.add(local);
   }//end for
-}//end loaDdata
-
+}//end loadData
 
 void newPlanet(String name,float size,color c,float mass,String description)
 {
@@ -115,13 +108,13 @@ void newAsteroid()
 {
   Asteroid local = new Asteroid();
   asteroids.add(local);
-}//end addPlanet
+}//end newAsteroid
 
 void userAsteroid(float a, float b)
 {
   Asteroid local = new Asteroid(a,b);
   asteroids.add(local);
-}//end addPlanet
+}//end userAsteroid
 
 void newFrags(float a, float b)
 {
@@ -130,16 +123,12 @@ void newFrags(float a, float b)
     Fragment local = new Fragment(a, b);
     fragments.add(local);
   }
-}//end addPlanet
-
-
-
+}//end newFrags
 
 void light()
 {
   strokeWeight(2);
   pushMatrix();
-  //translate(X+random(random(-3,3)),Y+random(-3,3));
   translate(X,Y);
   rotate(thetaB -= 0.0005);
   for(int i = 0;i < stars.length;i++)
@@ -155,17 +144,9 @@ void rock()
 {
   for(int i = 0;i < planets.size();i++)
   {
-    Planet tempPlanet = planets.get(i);
-    
+    Planet tempPlanet = planets.get(i); 
     tempPlanet.render();
     tempPlanet.update();
-    ///////////////////////////
-    if(i == 0)
-    {
-      println(tempPlanet.locate.x);
-      println(tempPlanet.locate.y);
-    }//end if
-    /////////////////////////
   }//end for
 }//end rock
 
@@ -178,14 +159,14 @@ void smallRock()
     {
       newFrags(tempAsteroid.pos.x,tempAsteroid.pos.y);
       asteroids.remove(i);
-    }
+    }//end if
     else
     {
       tempAsteroid.update();
       tempAsteroid.render();
     }//end else
-  }
-}//end rock
+  }//end for
+}//end smallRock
 
 void frag()
 {
@@ -195,15 +176,14 @@ void frag()
     if (tempFrag.shade < 0) 
     {
       fragments.remove(i);
-    }
+    }//end if
     else
     {
       tempFrag.update();
       tempFrag.render();
     }//end else
-  }
-}//end rock
-
+  }//end for
+}//end frag
 
 void ring()
 {
@@ -212,21 +192,18 @@ void ring()
   stroke(255);
   strokeWeight(2);
   ellipse(X,Y,rad,rad);
-}//end scale
+}//end ring
 
 void draw()
 {
   stroke(0);
   fill(0);
   
-  //switch(
   if(easter == false)
   {
     background(0);
   }//end if
-  
-  //scale(scale);
-  
+
   switch(menuSelect)
   {
     case 0:
@@ -234,57 +211,35 @@ void draw()
       displayStart();
       FMB.render();
       IB.render();
-      //FMB.render();
       
       break;
     }//end case 0
     case 1:
     {
-      
-      ///////////////////////////////////////////
-     pushMatrix();////////
-     scale(scale);
-     
-     light();
-     ring();
-     
-     pushMatrix();
-     translate(X, Y);   
-     pushMatrix();
-     rotation();
-     rock();
-     popMatrix();
-     //smallRock();
-     //frag();
-     popMatrix();
-     popMatrix();
-     
-     if(ready)
-     {
-       Planet tempPlanet = planets.get(select);
-       tempPlanet.displayInfo();
-     }//end if
-     ///////////////
-      /////////////////////////////////////////////
-      /*
       pushMatrix();
       scale(scale);
+     
       light();
       ring();
-
+     
       pushMatrix();
-      translate(X, Y);
+      translate(X, Y);   
       rotation();
       rock();
       popMatrix();
       popMatrix();
-      */
+     
+      if(ready)
+      {
+        Planet tempPlanet = planets.get(select);
+        tempPlanet.displayInfo();
+      }//end if
+    
       BB.render();
       break;
     }//end case 1
     case 2:
     {
-      
       generate();
       if(frameCount % 30 == 0)
       {
@@ -305,52 +260,10 @@ void draw()
       smallRock();
       frag();
       popMatrix();
-
-       
-
       
       BB.render();
       EB.render();
       break;
     }//end case 2
   }//end switch
-
-  /*
-  light();
-  ring();
-  
-  pushMatrix();
-  translate(X, Y);
-  
-  
-  
-  pushMatrix();
-  rotation();
-  rock();
-  popMatrix();
-  
-  
-  smallRock();
-  frag();
-  
-  
-  
-  //asteroid.update();
-  //asteroid.render();
-  
-  popMatrix();
-  
-  //asteroid.update();
-  //asteroid.render();
-  
-  
-  //println(scale);
-  ////////////////////////////////////
-  //test function
-  generate();
-  if(frameCount % 30 == 0)
-  {
-    newAsteroid();
-  }//end if
-  */
 }//end draw
